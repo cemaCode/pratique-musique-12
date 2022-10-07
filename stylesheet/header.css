@@ -82,12 +82,17 @@ nav > ul li:hover .sous {
     float: none;
 }
 
+h2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 section{
     display: flex;
     flex-direction: column;
     scroll-behavior: smooth;
     overflow-y: scroll;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 80%;
@@ -96,17 +101,9 @@ section{
     background-color: lightgoldenrodyellow;
 }
 
-section h2{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
 section p{
     display: flex;
-    flex-direction: row;
-    margin: 1em;
+    margin: 3em;
 }
 
 /* ====================================================== */
