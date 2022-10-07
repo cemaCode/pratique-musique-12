@@ -7,7 +7,7 @@ include('head.php')
 include('header.php');
 ?>
 
-<h2>Contact</h2>
+<h2>Contact12</h2>
 <section>
 
 </section>
