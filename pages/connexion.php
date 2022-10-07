@@ -28,7 +28,6 @@
             <input type="password" name="f_password" id="password">
             </br>
             <input class="connect" type="submit" value="Se connecter"/>
-
         </form>
     </div>
 
