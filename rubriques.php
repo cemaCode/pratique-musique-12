@@ -21,7 +21,7 @@ foreach($structures as $cle => $valeur){
         //print_r($array_stuctures);
 }}
 
-
+$db->checkLogin('elmolghc@3il.fr','chaker');
 
 ?>
 

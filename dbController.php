@@ -50,23 +50,15 @@ class dbController{
 		$req = 'SELECT nomInstrument FROM instruments ORDER BY nomInstrument' ;
 		if ($result = $this->_mysqli -> query($req)) {
 			$dump  = $result->fetch_all(MYSQLI_ASSOC);
-  			/* while ($row = $result -> fetch_assoc()) {
-    			echo '<div>'.$row['nomInstrument'].'</div>';
-			}
-			echo "RESULT : " . print_r($dump); */ 
 			$result -> free_result();
 		}
 		return $dump;
 	}
 
-	// Récupère 
+	// Récupère tableau avec les structures (et leurs données) 
 	public function getStructures(){
 		$req = 'SELECT * FROM structures';
 		if ($result = $this->_mysqli -> query($req)) {
-			/* 
-  			while ($row = $result -> fetch_assoc()) {
-    			echo '<div>'.$row[$colonne].'</div>';
-  			} */
 			  $dump = $result->fetch_all(MYSQLI_ASSOC);
 
 			  $result -> free_result();
@@ -74,18 +66,47 @@ class dbController{
 			return $dump;
 	}
 
+	// Récupère un tableau de Structure par une Rubrique
 	public function getStructureByRubrique($nomRubrique){
 		$req = "SELECT * FROM structures AS S INNER JOIN appartenir AS A ON S.mail = A.mail INNER JOIN rubriques AS R ON R.nomRubrique = A.nomRubrique WHERE R.nomRubrique = '$nomRubrique';  ";
 		if ($result = $this->_mysqli -> query($req)) {
-			/* 
-  			while ($row = $result -> fetch_assoc()) {
-    			echo '<div>'.$row[$colonne].'</div>';
-  			} */
 			  $dump = $result->fetch_all(MYSQLI_ASSOC);
 
 			  $result -> free_result();
 			}
 			return $dump;
+	}
+
+
+	// Verfie si l'utilisateur exite ( BOOL )
+	private function existsUser($user_mail){
+		$exists = false;
+		$req = "SELECT mail from utilisateurs where mail='$user_mail'";
+		if ($result = $this->_mysqli -> query($req)) {
+			if( $result->num_rows != 0 ){
+				$exists = true;
+			}}
+		return $exists;
+	}
+	public function checkLogin($mail, $passwd)
+	{
+		$isLoginValid = false;
+		$req = "SELECT * from utilisateurs where mail='$mail' and motDePasse='$passwd'";
+		if ($result = $this->_mysqli -> query($req)) {
+			if( $result->num_rows != 0 ){
+				$isPasswordValid = true;
+				echo "Connexion reussie. <br>";
+			}else{
+				$user_check = $this->existsUser($mail);
+				if($user_check == false){
+					echo "Adresse mail non reconnue. <br>";
+				}
+				else{
+					echo "Mot de passe incorrecte. <br>";
+				}
+			}
+		}
+		return $isLoginValid;
 	}
 
 	public function __destruct(){
