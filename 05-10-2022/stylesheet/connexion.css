@@ -1,0 +1,36 @@
+body{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+section{
+    display: -ms-flexbox;
+    flex-direction: column;
+    height: 100%;
+}
+
+article{
+    display: flexbox;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    flex-grow:1;    /*Permet le callage du pieds de page en déformant la section par rapport aux autres objets*/
+    border-radius: 5px;
+    background-color: lightgoldenrodyellow;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label, input{
+    display: -ms-flexbox;
+    align-items: center;
+}
+
