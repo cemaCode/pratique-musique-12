@@ -88,6 +88,7 @@ class dbController{
 			}}
 		return $exists;
 	}
+	
 	public function checkLogin($mail, $passwd)
 	{
 		$isLoginValid = false;
