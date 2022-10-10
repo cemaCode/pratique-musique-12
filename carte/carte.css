@@ -13,6 +13,7 @@
     transition: fill 0.3s;
 }
 
+
 .map__image path:hover{
     fill: #516a72;
     transition: fill 0.3s;
