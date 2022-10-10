@@ -1,0 +1,19 @@
+.map__image {
+    width: 50px;
+    float: left;
+}
+
+
+.map__image path {
+    fill:#9ed0df;
+    fill-opacity:0.96672848;
+    stroke: rgb(70, 70, 70);
+    stroke-width:0.00201109;
+    stroke-opacity:1;
+    transition: fill 0.3s;
+}
+
+.map__image path:hover{
+    fill: #516a72;
+    transition: fill 0.3s;
+}
