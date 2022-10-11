@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 class dbController{
 	
 	private $_server = 'localhost'; // Nom serveur
@@ -89,26 +92,34 @@ class dbController{
 		return $exists;
 	}
 	
+
+	//Methode pour verifier le login ( retourne un BOOL )
 	public function checkLogin($mail, $passwd)
 	{
 		$isLoginValid = false;
 		$req = "SELECT * from utilisateurs where mail='$mail' and motDePasse='$passwd'";
 		if ($result = $this->_mysqli -> query($req)) {
 			if( $result->num_rows != 0 ){
-				$isPasswordValid = true;
-				echo "Connexion reussie. <br>";
+				$isLoginValid = true;
+				// echo "<script>alert('Connexion reussie. ')</script>";
 			}else{
 				$user_check = $this->existsUser($mail);
 				if($user_check == false){
-					echo "Adresse mail non reconnue. <br>";
+					echo "<script>alert('Adresse mail non reconnue. ')</script>";
 				}
 				else{
-					echo "Mot de passe incorrecte. <br>";
+					echo "<script>alert('Mot de passe incorrecte.')</script>";
 				}
 			}
 		}
+		echo ($isLoginValid);
 		return $isLoginValid;
 	}
+
+	public function cleanInput($input){
+		return ($this->_mysqli ->real_escape_string($input));
+	}
+
 
 	public function __destruct(){
 		$this->_mysqli->close();

@@ -15,24 +15,54 @@
     <h1><a href="/pratique-musique-12/index.php">pratique-musique-12</a></h1>
 </header>
 
+
+
+<?php
+require_once($_SERVER['DOCUMENT_ROOT']."/pratique-musique-12/testing/dbController.php");
+
+
+if(isset($_POST['f_login_button'])){
+
+    $db = new dbController();
+    $mail = $db ->cleanInput($_POST['f_login']);
+    $motDePasse = $db ->cleanInput($_POST['f_password']);
+
+    if ($mail != "" && $motDePasse != ""){
+        
+        $isLoginValid = $db->checkLogin($mail, $motDePasse);
+        print_r($isLoginValid);
+        
+        if($isLoginValid){   
+            $_SESSION['login'] = $mail;
+            header('Location: admin.php');
+         }
+
+}
+}
+?>
+
 <body>
 
     <div class="connexion">
 
         <h3>Connexion</h3>
-        <form action="Connexion.php" method="post" name="f_connexion">
+        <form action="Connexion.php" method="POST" name="f_connexion">
 
             <label for="login">Nom d'utilisateur : </label>
             <input type="text" name="f_login" id="login">
             <label for="password">Mot de passe : </label>
             <input type="password" name="f_password" id="password">
             </br>
-            <input class="connect" type="submit" value="Se connecter"/>
+            <input class="connect" type="submit" value="Se connecter" name="f_login_button"/>
         </form>
     </div>
+
+    
+
 
     <?php
     include('footer.php');
     ?>
+
 </body>
 </html>
