@@ -1,0 +1,36 @@
+body{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.connexion{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
+    flex-grow:1;    /*Permet le callage du pied de page en déformant la section par rapport aux autres objets*/
+    border-radius: 5px;
+    background-color: lightgoldenrodyellow;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    padding: 8px 20px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.connect{
+    width: 125px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
+h3{
+    display: block;
+}

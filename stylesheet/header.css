@@ -1,4 +1,4 @@
-/* CSS header */
+/* @charset "UTF-8"; */
 
 * {
     padding: 0;
@@ -6,153 +6,134 @@
     box-sizing: border-box;
 }
 
-header {
-    font-family: "IBM_mono_regular";
-    display : flexbox;
-    flex-direction: column;
-  column-gap : 200px;
-    position: fixed;
+html{
     width: 100%;
-/*     height: 20%; */
-    z-index: 1000;
-  background-color : lightblue;
-  justify-content : center;
+    height: 100%;
 }
 
-/* ====================================================== */
-/* ////////////////////////////////////////////////////// */
-/* ///////////////////// @FONT-FACE ///////////////////// */
-/* ////////////////////////////////////////////////////// */
-/* ====================================================== */
-@font-face {
-    font-family: "IBM_mono_regular";
-    src: url("../fonts/IBM_Plex_Mono/IBMPlexMono-Regular.ttf");
-}
-
-@font-face {
-    font-family: "IBM_mono_italic";
-    src: url("../fonts/IBM_Plex_Mono/IBMPlexMono-Italic.ttf");
-}
-
-/* ====================================================== */
-/* ////////////////////////////////////////////////////// */
-/* ///////////////////// @FONT-FACE ///////////////////// */
-/* ////////////////////////////////////////////////////// */
-/* ====================================================== */
-
-/* ====================================================== */
-/* ////////////////////////////////////////////////////// */
-/* ///////////////////////// H1 ///////////////////////// */
-/* ////////////////////////////////////////////////////// */
-/* ====================================================== */
-h1 {
-    left: 0.8em;
+body{
+/*    width: 100%;*/
+    height: 100%;
+    font-family: Arial;
     display: flex;
-    align-self: flex-start;
-    color: rgb(194, 0, 0);
-    font-size: 2em;
-    border: 2px solid rgb(194, 0, 0);
-  border-block-end: 1px;
-    padding: 3px;
-  width: 300px;
-    text-align: center;
-    flex: 1;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
-h1 a {
-    text-decoration: none;
-    color: rgb(194, 0, 0);
+header{
+    width: 100%;
 }
 
-/* ====================================================== */
-/* ////////////////////////////////////////////////////// */
-/* /////////////////////// fin H1 /////////////////////// */
-/* ////////////////////////////////////////////////////// */
-/* ====================================================== */
+button {
+    position: fixed;
+    top: 2px;
+    right: 2px;
+}
 
-/* ====================================================== */
-/* ////////////////////////////////////////////////////// */
-/* /////////////////// menu déroulant /////////////////// */
-/* ////////////////////////////////////////////////////// */
-/* ====================================================== */
+header h1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-/* position de la barre de nav*/
 nav {
-    display: inline-flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 5px;
+    background-color: lightblue;
+    height: 60px;
+    width: 100%;
+}
+
+nav ul, nav ul li{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+nav ul li a{
+    display: flex;
+    flex-direction: row;
     justify-content: center;
-/*     position: relative; */
-    vertical-align:  bottom;
-    background-color : black;
-  align-self: flex-end;
-  flex-grow: 4;
-}
-
-/* items de la liste*/
-nav ul {
-    list-style-type: none;
-}
-
-/* position des elts de la liste */
-nav ul li {
-    display: inline-block;
-    position: relative;
-    padding: 2.5% 20px;
-}
-
-nav ul li a {
-    color: rgb(194, 0, 0);
+    align-items: center;
+    width: 170px;
+    height: 30px;
+    margin: 2% 2%;
     text-decoration: none;
+    border-radius: 5px;
+    background-color: lightpink;
+    color: black;
+}
+
+.sous {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+}
+
+nav > ul li:hover .sous {
     display: block;
-    padding: 4px 0;
 }
 
-.deroulant > a::after {
-    content: " ▼ ";
-    font-size: 0.8em;
+.sous li{
+    float: none;
 }
 
-
-/* ====================================================== */
-/* ////////////////////////////////////////////////////// */
-/* ///////////////// fin menu déroulant ///////////////// */
-/* ////////////////////////////////////////////////////// */
-/* ====================================================== */
-
-/* ====================================================== */
-/* ////////////////////////////////////////////////////// */
-/* /////////////////// @MediaQueries  /////////////////// */
-/* ////////////////////////////////////////////////////// */
-/* ====================================================== */
-
-@media (min-device-width: 481px) {
-    .sous {
-        display: none;
-        position: absolute;
-        z-index: 1000;
-        width: auto;
-    }
-
-    nav > ul li:hover .sous {
-        display: block;
-    }
-
-    .sous li {
-        float: none;
-        width: 100%;
-        text-align: left;
-    }
-
-    .sous a:hover {
-        background-color: RGBa(0, 0, 0, 0.2);
-    }
+h2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+section{
+    display: flex;
+    flex-direction: column;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    flex-grow:1;    /*Permet le callage du pieds de page en déformant la section par rapport aux autres objets*/
+    border-radius: 5px;
+    background-color: lightgoldenrodyellow;
+}
 
-
-
+section p{
+    display: flex;
+    margin: 3em;
+}
 
 /* ====================================================== */
 /* ////////////////////////////////////////////////////// */
-/* ///////////////// fin @MediaQueries  ///////////////// */
+/* ///////////////////// Scrollbar ////////////////////// */
 /* ////////////////////////////////////////////////////// */
 /* ====================================================== */
+section::-webkit-scrollbar {
+    width: 10px;
+}
+
+section::-webkit-scrollbar-thumb {
+    background: rgb(0, 255, 0);
+    border-radius: 20px;
+}
+
+section::-webkit-scrollbar-track {
+    border-radius: 20px;
+}
+/* ====================================================== */
+/* ////////////////////////////////////////////////////// */
+/* /////////////////// fin Scrollbar //////////////////// */
+/* ////////////////////////////////////////////////////// */
+/* ====================================================== */
+footer{
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    background-color: lightblue;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}

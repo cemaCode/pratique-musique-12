@@ -1,0 +1,1 @@
+<footer>Ceci est mon pied de page<br>Copyright LL & CEM 2022.</footer>
