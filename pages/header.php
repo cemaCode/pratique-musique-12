@@ -1,6 +1,22 @@
-<button name="connexion"><a href="/pratique-musique-12/pages/connexion.php">Connexion</a></button>
-
 <header>
+    <?php
+    //require_once($_SERVER['DOCUMENT_ROOT'] . "/pratique-musique-12/testing/dbController.php");
+        session_start();
+        // Verifie si connecté, ca redirige à l'accueil sinon
+        if (!isset($_SESSION['login'])) {
+            echo "<button name='connexion'><a href='/pratique-musique-12/pages/connexion.php'>Connexion</a></button>";
+        }
+        else{
+            echo "<form method='post'>
+                <input id='logout' type='submit' value='Se déconnecter' name='f_logout_button'>
+              </form>";
+        }
+    //Deconnexion
+        if (isset($_POST['f_logout_button'])) {
+            session_destroy();
+            header('Location: /pratique-musique-12/index.php');
+        }
+    ?>
     <h1><a href="/pratique-musique-12/index.php">pratique-musique-12</a></h1>
     <nav>
         <ul>
