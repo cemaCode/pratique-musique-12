@@ -88,12 +88,11 @@
             cursus. Etiam feugiat auctor blandit. Suspendisse a mollis diam. Fusce eu venenatis lorem. Praesent cursus ac
             lacus sed finibus.
         </p>
-    </section>
 
+    </section>
     <?php
     include('pages/footer.php');
     ?>
-
 </body>
 
 </html>
