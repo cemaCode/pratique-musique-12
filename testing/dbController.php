@@ -1,7 +1,8 @@
 <?php
 
-session_start();
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 class dbController{
 	
 	private $_server = 'localhost'; // Nom serveur
@@ -34,18 +35,14 @@ class dbController{
 		  }
 	}
 
-	public function getRubriques(){
 	// Récupèrer une colonne de la table Rubriques
+	public function getRubriques(){
 		$req = 'SELECT nomRubrique FROM rubriques';
 		if ($result = $this->_mysqli -> query($req)) {
 			$dump = $result->fetch_all(MYSQLI_ASSOC);
-		/* 	while ($row = $result -> fetch_assoc()) {
-				echo $row['nomRubrique'].'<br/>';
-			} */
 			  $result -> free_result();
 			}
 			return $dump;
-
 	}
 
 	// Réupère tous les instruments en ordre alphabetique
