@@ -25,13 +25,13 @@ header{
     width: 100%;
 }
 
-button {
+header button {
     position: fixed;
     top: 2px;
     right: 2px;
 }
 
-input {
+header input {
     display: inline-block;
     position: fixed;
     top: 2px;
@@ -44,7 +44,7 @@ header h1{
     align-items: center;
 }
 
-nav {
+header nav {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -55,13 +55,13 @@ nav {
     width: 100%;
 }
 
-nav ul, nav ul li{
+header nav ul, header nav ul li{
     display: flex;
     justify-content: space-evenly;
 }
 
 
-nav ul li a{
+header nav ul li a{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -81,7 +81,7 @@ nav ul li a{
     z-index: 1000;
 }
 
-nav > ul li:hover .sous {
+header nav > ul li:hover .sous {
     display: block;
 }
 
