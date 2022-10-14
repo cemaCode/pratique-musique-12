@@ -55,13 +55,13 @@ header nav {
     width: 100%;
 }
 
-header nav ul, header nav ul li{
+header nav ul, header nav ul li {
     display: flex;
     justify-content: space-evenly;
 }
 
 
-header nav ul li a{
+header nav ul li a {
     display: flex;
     flex-direction: row;
     justify-content: center;
