@@ -1,7 +1,21 @@
 .offre, .structure {
     background-color: grey;
+    padding: 10px;
+    margin: 10px 0;
 }
 
-.offre h3, .offre p, .structure h3, .structure p {
+.offre h3, .structure h3{
+    margin-bottom: 5px;
+}
+
+.content {
     margin-left: 350px;
+}
+
+.code_postal, .ville {
+    display: inline;
+}
+
+.voir-offres {
+    margin-top: 10px;
 }
