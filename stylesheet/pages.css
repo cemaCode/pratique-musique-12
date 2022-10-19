@@ -1,0 +1,7 @@
+.offre, .structure {
+    background-color: grey;
+}
+
+.offre h3, .offre p, .structure h3, .structure p {
+    margin-left: 350px;
+}

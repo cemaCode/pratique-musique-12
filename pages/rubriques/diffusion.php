@@ -18,6 +18,7 @@ require_once('../header.php');
         echo "<h3>".$structure['nomStructure']."</h3>";
     }
     ?>
+
 </section>
 
 <?php

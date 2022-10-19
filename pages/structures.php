@@ -7,7 +7,7 @@
     include('header.php');
     ?>
 
-    <h2>Rubriques</h2>
+    <h2>Structures</h2>
     <section>
 
     </section>

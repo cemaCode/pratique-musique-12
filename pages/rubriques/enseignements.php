@@ -25,16 +25,18 @@ include('../head.php')
 
     }else{
         $nomInstrument = $_GET['nomInstrument'];
+        $structures = $db->getStructureByInstrument();
+
         echo "Voici les structures proposant l'instrument : ". $nomInstrument;
 
         // ICI ON POURRAIT AVOIR UNE PAGE PHP QUI PREND LA LISTE DES STRUCTURES PEU IMPORTE LA RUBRIQUE
-        // CETTE PAGE POURRAIT ETRE UTILISEE POUR TOUTES LES RUBRIQUES AVEC UN STYLE EN CARDS 
+        // CETTE PAGE POURRAIT ETRE UTILISEE POUR TOUTES LES RUBRIQUES AVEC UN STYLE EN CARDS
         // CF ARTSVIVANTS52.ORG/BASE-DE-DONNEES.HTML
-        
+
     }
 
-        ?>
-    </section>
+    ?>
+</section>
 
     <?php
     include('../footer.php');

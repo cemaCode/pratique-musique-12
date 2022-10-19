@@ -55,13 +55,29 @@ header nav {
     width: 100%;
 }
 
-header nav ul, header nav ul li{
+#accueil::before{
+    content: url(/pratique-musique-12/icons/accueil.svg);
+    padding-right: 10px;
+}
+
+#recherche::before{
+    content: url(/pratique-musique-12/icons/rechercher.svg);
+    padding-right: 10px;
+}
+
+#contact::before{
+    content: url(/pratique-musique-12/icons/contact.svg);
+    padding-right: 10px;
+}
+
+
+header nav ul, header nav ul li {
     display: flex;
     justify-content: space-evenly;
 }
 
 
-header nav ul li a{
+header nav ul li a {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -73,6 +89,12 @@ header nav ul li a{
     border-radius: 5px;
     background-color: lightpink;
     color: black;
+}
+
+.deroulant > a::after {
+    content: " ▼ ";
+    padding-left: 10px;
+    opacity: 80%;
 }
 
 .sous {
@@ -88,6 +110,7 @@ header nav > ul li:hover .sous {
 .sous li{
     float: none;
 }
+
 
 h2{
     display: flex;

@@ -68,7 +68,7 @@ class dbController{
 
 	// Récupère un tableau de Structure par une Rubrique
 	public function getStructureByRubrique($nomRubrique){
-		$req = "SELECT * FROM structures AS S INNER JOIN appartenir AS A ON S.mail = A.mail INNER JOIN rubriques AS R ON R.nomRubrique = A.nomRubrique WHERE R.nomRubrique = '$nomRubrique';  ";
+		$req = "SELECT * FROM structures  INNER JOIN offres  ON structures.contact = offres.contact INNER JOIN rubriques ON rubriques.nomRubrique = offres.nomRubrique WHERE rubriques.nomRubrique = '$nomRubrique';  ";
 		if ($result = $this->_mysqli -> query($req)) {
 			  $dump = $result->fetch_all(MYSQLI_ASSOC);
 
