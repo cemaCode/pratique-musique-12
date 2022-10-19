@@ -20,9 +20,9 @@
     <nav>
         <ul>
             <li><a id='accueil' href="/pratique-musique-12/index.php">Accueil</a></li>
-            <li class="deroulant"><a class='deroulant' href="/pratique-musique-12/index.php">Rubriques</a>
+            <li class="deroulant"><a class='deroulant' href="/pratique-musique-12/pages/rubriques.php">Rubriques</a>
                 <ul class="sous">
-                    <li class="deroulant" id="rubriques"><a href="/pratique-musique-12/index.php">Rubriques</a></li>
+                    <li class="deroulant" id="rubriques"><a href="/pratique-musique-12/pages/rubriques.php">Rubriques</a></li>
                     <li><a href="/pratique-musique-12/pages/rubriques/eveil_musical.php">Eveil musical</a></li>
                     <li><a href="/pratique-musique-12/pages/rubriques/enseignements.php">Enseignements</a></li>
                     <li><a href="/pratique-musique-12/pages/rubriques/pratique_ensemble.php">Pratiques d'ensemble</a>
