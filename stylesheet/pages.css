@@ -1,7 +1,11 @@
-.offre, .structure {
+.structure {
     background-color: grey;
     padding: 10px;
     margin: 10px 0;
+}
+
+.offre {
+    background-color: rgb(75,75,75);
 }
 
 .offre h3, .structure h3{
@@ -16,6 +20,16 @@
     display: inline;
 }
 
-.voir-offres {
+.voir-offres, .offre {
     margin-top: 10px;
 }
+
+.hide {
+    display: none;
+}
+
+/*#test_taille {*/
+/*    width: 250px;*/
+/*    height: 250px;*/
+/*    background-color: black;*/
+/*}*/
