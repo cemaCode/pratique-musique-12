@@ -9,4 +9,5 @@
     <meta name="viewport" content="height=device-height, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/pratique-musique-12/stylesheet/header.css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="/pratique-musique-12/stylesheet/pages.css" media="screen"/>
+    <script type="text/javascript" src="/pratique-musique-12/pages/functions.js"></script>
 </head>
