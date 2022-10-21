@@ -25,7 +25,9 @@ include('../head.php')
         } else {
             $nomInstrument = $_GET['nomInstrument'];
             $structures = $db->getStructureByInstrument($nomInstrument);
+            $GLOBALS['currentRubrique'] = 'Enseignements';
             $GLOBALS['structures'] = $structures;
+
             echo "<h2>Voici les structures proposant l'instrument : {$nomInstrument}</h2>";
             include("../affichageStructures.php");
 

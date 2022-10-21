@@ -77,7 +77,7 @@ class dbController
 		$req = "SELECT * FROM structures  INNER JOIN offres  ON structures.contact = offres.contact INNER JOIN rubriques ON rubriques.nomRubrique = offres.nomRubrique WHERE rubriques.nomRubrique = '{$nomRubrique}';  ";
 		if ($result = $this->_mysqli->query($req)) {
 			$dump = $result->fetch_all(MYSQLI_ASSOC);
-			$dump = array_unique($dump);
+//			$dump = array_unique($dump);
 			$result->free_result();
 		}
 		return $dump;
@@ -89,7 +89,7 @@ class dbController
 		$req = "SELECT * FROM structures  INNER JOIN offres  ON structures.contact = offres.contact INNER JOIN instruments ON instruments.nomInstrument = offres.nomInstrument WHERE instruments.nomInstrument = '{$nomInstrument}';  ";
 		if ($result = $this->_mysqli->query($req)) {
 			$dump = $result->fetch_all(MYSQLI_ASSOC);
-			$dump = array_unique($dump);
+//			$dump = array_unique($dump);
 			$result->free_result();
 		}
 		return $dump;
@@ -141,7 +141,7 @@ class dbController
 		$req = "SELECT * FROM offres  WHERE nomRubrique = '{$nomRubrique}';  ";
 		if ($result = $this->_mysqli->query($req)) {
 			$dump = $result->fetch_all(MYSQLI_ASSOC);
-			$dump = array_unique($dump);
+//			$dump = array_unique($dump);
 			$result->free_result();
 		}
 		return $dump;
