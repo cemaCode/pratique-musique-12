@@ -13,10 +13,8 @@ require_once('../header.php');
     require_once($_SERVER['DOCUMENT_ROOT'] . "/pratique-musique-12/testing/dbController.php");
 
     $db = new dbController();
-
-    $GLOBALS['currentRubrique'] = 'Enseignement';
+    $GLOBALS['currentRubrique'] = 'Éveil';
     $stuctures = $db->getStructureByRubrique($GLOBALS['currentRubrique']);
-    $GLOBALS['structures'] = $stuctures;
 
     include ('../affichageStructures.php');
 
