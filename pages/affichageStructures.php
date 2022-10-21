@@ -16,7 +16,7 @@
             <?php
         }
     } else {
-        header('Location: ../index.php');
+        header('Location: /pratique-musique-12/index.php');
         exit;
     }
 ?>
