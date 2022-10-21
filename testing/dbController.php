@@ -71,25 +71,33 @@ class dbController
 		return $dump;
 	}
 
-	// Récupère un tableau de Structure par une Rubrique
+
+	// Récupère un tableau de Structure par une Rubrique ( sans doublons )
+
 	public function getStructureByRubrique($nomRubrique)
 	{
 		$req = "SELECT * FROM structures  INNER JOIN offres  ON structures.contact = offres.contact INNER JOIN rubriques ON rubriques.nomRubrique = offres.nomRubrique WHERE rubriques.nomRubrique = '{$nomRubrique}';  ";
 		if ($result = $this->_mysqli->query($req)) {
 			$dump = $result->fetch_all(MYSQLI_ASSOC);
-//			$dump = array_unique($dump);
+
+			$dump = array_unique($dump, SORT_REGULAR);
+
 			$result->free_result();
 		}
 		return $dump;
 	}
 
-	// Récupère un tableau de Structure par une Rubrique
+
+	// Récupère un tableau de Structures par un Instrument ( sans doublons )
+
 	public function getStructureByInstrument($nomInstrument)
 	{
 		$req = "SELECT * FROM structures  INNER JOIN offres  ON structures.contact = offres.contact INNER JOIN instruments ON instruments.nomInstrument = offres.nomInstrument WHERE instruments.nomInstrument = '{$nomInstrument}';  ";
 		if ($result = $this->_mysqli->query($req)) {
 			$dump = $result->fetch_all(MYSQLI_ASSOC);
-//			$dump = array_unique($dump);
+
+			$dump = array_unique($dump, SORT_REGULAR);
+
 			$result->free_result();
 		}
 		return $dump;
@@ -136,12 +144,17 @@ class dbController
 		return ($this->_mysqli->real_escape_string($input));
 	}
 
+
+		// REcupère un tableau d'offres par une rubrique 
+
 	public function getOffresByRubrique($nomRubrique)
 	{
 		$req = "SELECT * FROM offres  WHERE nomRubrique = '{$nomRubrique}';  ";
 		if ($result = $this->_mysqli->query($req)) {
 			$dump = $result->fetch_all(MYSQLI_ASSOC);
-//			$dump = array_unique($dump);
+
+			$dump = array_unique($dump, SORT_REGULAR);
+
 			$result->free_result();
 		}
 		return $dump;

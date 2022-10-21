@@ -12,11 +12,12 @@ require_once('../header.php');
     <?php
     require_once($_SERVER['DOCUMENT_ROOT']."/pratique-musique-12/testing/dbController.php");
     $db = new dbController();
+    
     $structures = $db->getStructureByRubrique('Diffusion');
+    $GLOBALS['structures'] = $stuctures;
+    $GLOBALS['currentRubrique'] = 'Diffusion';
 
-    foreach ($structures as $structure){
-        echo "<h3>".$structure['nomStructure']."</h3>";
-    }
+    include ('../affichageStructures.php');
     ?>
 
 </section>

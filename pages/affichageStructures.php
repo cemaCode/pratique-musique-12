@@ -47,13 +47,10 @@ if (isset($GLOBALS['structures'])) {
                 <?php
             }
         }
-        ?>
-        </div>
-<?php
-    }
-} else {
-    header('Location: ../index.php');
-    exit;
+
+    } else {
+        header('Location: /pratique-musique-12/index.php');
+        exit;
 }
 ?>
 

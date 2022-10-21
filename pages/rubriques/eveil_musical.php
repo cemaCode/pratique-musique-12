@@ -15,8 +15,8 @@ require_once('../header.php');
     $db = new dbController();
 
     $GLOBALS['currentRubrique'] = 'Éveil musical';
+
     $stuctures = $db->getStructureByRubrique($GLOBALS['currentRubrique']);
-    $GLOBALS['structures'] = $stuctures;
 
     include ('../affichageStructures.php');
 
