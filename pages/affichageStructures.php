@@ -5,12 +5,11 @@ $nomRubrique = "";
 $offres = [];
 if (isset($GLOBALS['currentRubrique'])) {
     $nomRubrique = $GLOBALS['currentRubrique'];
-    $offres = $db->getOffresByRubriques($nomRubrique);
+    $offres = $db->getOffresByRubrique($nomRubrique);
 }
 
 if (isset($GLOBALS['structures'])) {
     $stuctures = $GLOBALS['structures'];
-
     foreach ($stuctures as $structure) {
         ?>
         <div class="structure">
@@ -47,6 +46,7 @@ if (isset($GLOBALS['structures'])) {
                 <?php
             }
         }
+    }
     } else {
         header('Location: /pratique-musique-12/index.php');
         exit;
