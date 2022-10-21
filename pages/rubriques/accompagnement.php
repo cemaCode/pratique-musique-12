@@ -15,7 +15,7 @@ include('../header.php');
     
     $structures = $db->getStructureByRubrique('Accompagnement');
 
-    $GLOBALS['structures'] = $stuctures;
+    $GLOBALS['structures'] = $structures;
 
     $GLOBALS['currentRubrique'] = 'Accompagnement';
 

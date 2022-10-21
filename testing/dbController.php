@@ -76,12 +76,10 @@ class dbController
 
 	public function getStructureByRubrique($nomRubrique)
 	{
-		$req = "SELECT * FROM structures  INNER JOIN offres  ON structures.contact = offres.contact INNER JOIN rubriques ON rubriques.nomRubrique = offres.nomRubrique WHERE rubriques.nomRubrique = '{$nomRubrique}';  ";
+		$req = "SELECT nomStructure, structures.contact, tel, siteInternet, adresse, codeInsee FROM structures INNER JOIN offres ON structures.contact = offres.contact INNER JOIN rubriques ON rubriques.nomRubrique = offres.nomRubrique WHERE rubriques.nomRubrique = '{$nomRubrique}';  ";
 		if ($result = $this->_mysqli->query($req)) {
 			$dump = $result->fetch_all(MYSQLI_ASSOC);
-
 			$dump = array_unique($dump, SORT_REGULAR);
-
 			$result->free_result();
 		}
 		return $dump;

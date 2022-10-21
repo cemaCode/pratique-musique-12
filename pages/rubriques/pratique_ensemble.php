@@ -14,7 +14,7 @@ include('../header.php');
     $db = new dbController();
     
     $structures = $db->getStructureByRubrique($db->cleanInput("Pratique d'ensemble"));
-    $GLOBALS['structures'] = $stuctures;
+    $GLOBALS['structures'] = $structures;
     $GLOBALS['currentRubrique'] = $db->cleanInput("Pratique d'ensemble");
 
     include ('../affichageStructures.php');
