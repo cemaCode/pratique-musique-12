@@ -14,7 +14,7 @@ require_once('../header.php');
     $db = new dbController();
     
     $structures = $db->getStructureByRubrique('Diffusion');
-    $GLOBALS['structures'] = $stuctures;
+    $GLOBALS['structures'] = $structures;
     $GLOBALS['currentRubrique'] = 'Diffusion';
 
     include ('../affichageStructures.php');
