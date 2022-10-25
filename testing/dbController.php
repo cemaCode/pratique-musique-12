@@ -123,6 +123,7 @@ class dbController
 		if ($result = $this->_mysqli->query($req)) {
 			if ($result->num_rows != 0) {
 				$isLoginValid = true;
+				$this->isAdmin($mail);
 				// echo "<script>alert('Connexion reussie. ')</script>";
 			} else {
 				$user_check = $this->existsUser($mail);
@@ -143,7 +144,19 @@ class dbController
 	}
 
 
-		// REcupère un tableau d'offres par une rubrique 
+	// Methode pour verifier si le user connecté est admin ou pas 
+	private function isAdmin($mail)
+	{
+		$req = "SELECT * from utilisateurs where mail='$mail' and nomRole='Administrateur'";
+		if ($result = $this->_mysqli->query($req)) {
+			if ($result->num_rows != 0) {
+				$isAdmin = true;
+				$_SESSION['admin'] = true;
+			}
+		}
+	}
+
+	// REcupère un tableau d'offres par une rubrique 
 
 	public function getOffresByRubrique($nomRubrique)
 	{

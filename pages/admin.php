@@ -2,7 +2,17 @@
     require_once('head.php')
 ?>
 
+<?php
+require_once($_SERVER['DOCUMENT_ROOT']."/pratique-musique-12/testing/dbController.php");
 
+// Verifie si connecté, ca redirige à l'accueil sinon
+if(!isset($_SESSION['login'])){
+    header('Location: ../index.php');
+}elseif( !$_SESSION['admin']){
+    header('Location: ../struct_admin.php');
+}
+
+?>
 <body>
     <?php
     require_once('header.php');

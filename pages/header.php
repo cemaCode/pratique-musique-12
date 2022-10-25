@@ -1,7 +1,11 @@
 <header>
     <?php
-    //require_once($_SERVER['DOCUMENT_ROOT'] . "/pratique-musique-12/testing/dbController.php");
-    session_start();
+
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+    
     // Verifie si connecté, ca redirige à l'accueil sinon
     if (!isset($_SESSION['login'])) {
         echo "<button name='connexion'><a href='/pratique-musique-12/pages/connexion.php'>Connexion</a></button>";
