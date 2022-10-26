@@ -28,7 +28,10 @@
 
             if($isLoginValid){
                 $_SESSION['login'] = $mail;
-                header('Location: admin.php');
+                if( $_SESSION['admin']){
+                    header('Location: admin.php');
+                }else
+                    header('Location: struct_admin.php');
              }
     }
     }
