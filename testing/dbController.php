@@ -172,6 +172,12 @@ class dbController
 	}
 
 
+	public function searchOffres($niveau, $rubrique, $localisation, $motCle)
+	{
+
+		// TODO 
+	}
+
 	public function __destruct()
 	{
 		$this->_mysqli->close();
