@@ -10,22 +10,20 @@ if (isset($GLOBALS['currentRubrique'])) {
 }
 
 if (isset($GLOBALS['structures'])) {
-$stuctures = $GLOBALS['structures'];
-foreach ($stuctures
-
-as $structure) {
+    $stuctures = $GLOBALS['structures'];
+    foreach ($stuctures as $structure) {
 ?>
 
-
-
 <div class="structure">
-    <img class="img_offre" src="img1" alt="#">
+    <div class="img_container">
+        <img class="img_offre" src="/pratique-musique-12/images/placeholder.png" alt="image structure">
+    </div>
     <div class="content">
         <h3><?php echo $structure['nomStructure']; ?></h3>
         <p class="siteInternet"><?php echo $structure['siteInternet']; ?></p>
         <p class="adresse"><?php echo $structure['adresse']; ?></p>
-        <p class="code_postal">31300, </p>
-        <p class="ville">RODEZ</p>
+        <p class="code_postal"><?php //echo $db->getCodePostalFromInsee($structure['codeInsee']); ?>></p>
+        <p class="ville"><?php //echo $db->getCommuneFromInsee($structure['codeInsee']); ?>></p>
         <p class="tel"><?php echo $structure['tel']; ?></p>
         <p class="contact"><?php echo $structure['contact']; ?></p>
         <button onclick="toggleVisibility('<?php echo $structure['tel'] ?>')">Voir les offres «
@@ -36,27 +34,25 @@ as $structure) {
 </div>
 <div id="<?php echo $structure['tel'] ?>" class="hide">
     <?php
+    $index = 0;
+    $arraySlides = "";
     foreach ($offres as $offre) {
         if ($offre['contact'] == $structure['contact']) {
             ?>
             <div class="offre">
-                <script>
-                    var slideIndex = 1;
-                    showDivs(slideIndex);
-                </script>
-                <!--                    <div id="test_taille"></div>-->
-                <div class="img_container">
+                <div class="slideshow_container">
 
-                    <img loading="lazy" class="img_offre"
+                    <img loading="lazy" class="offre_<?php echo $index; ?>"
                          src="/pratique-musique-12/images/img_offres/<?php echo $offre['idOffre']; ?>/<?php echo $offre['photo1']; ?>"
                          alt="#">
-<!--                    <img class="img_offre"-->
-<!--                         src="/pratique-musique-12/images/img_offres/--><?php //echo $offre['idOffre']; ?><!--/--><?php //echo $offre['photo2']; ?><!--"-->
-<!--                         alt="#">-->
-<!--                    <img class="img_offre"-->
-<!--                         src="/pratique-musique-12/images/img_offres/--><?php //echo $offre['idOffre']; ?><!--/--><?php //echo $offre['photo3']; ?><!--"-->
-<!--                         alt="#">-->
-
+                    <img loading="lazy" class="offre_<?php echo $index; ?>"
+                         src="/pratique-musique-12/images/img_offres/<?php echo $offre['idOffre']; ?>/<?php echo $offre['photo2']; ?>"
+                         alt="#">
+                    <img loading="lazy" class="offre_<?php echo $index; ?>"
+                         src="/pratique-musique-12/images/img_offres/<?php echo $offre['idOffre']; ?>/<?php echo $offre['photo3']; ?>"
+                         alt="#">
+                    <a class="prev" onclick="plusSlides(-1, <?php echo $index; ?>)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1, <?php echo $index; ?>)">&#10095;</a>
                 </div>
                 <div class="content">
                     <h3><?php echo $offre['nomOffre']; ?></h3>
@@ -68,18 +64,18 @@ as $structure) {
 
             <?php
         }
-
+        $arraySlides = $arraySlides . "offre_" . $index . ",";
+        $index += 1;
     }
+    $arraySlides = substr($arraySlides, 0, -1);
     echo "</div>";
     }
     } else {
-
         print_r($GLOBALS['currentRubrique']);
         print_r($GLOBALS['structures']);
-//        header('Location: /pratique-musique-12/index.php');
         exit;
     }
     ?>
-
-
-
+    <p id="arraySlides"><?php echo $arraySlides; ?>
+    <p>
+        <script type="text/javascript" src="/pratique-musique-12/pages/functions.js"></script>

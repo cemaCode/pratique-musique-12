@@ -1,11 +1,10 @@
 <header>
     <?php
 
-    if(!isset($_SESSION)) 
-    { 
-        session_start(); 
-    } 
-    
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+
     // Verifie si connecté, ca redirige à l'accueil sinon
     if (!isset($_SESSION['login'])) {
         echo "<button name='connexion'><a href='/pratique-musique-12/pages/connexion.php'>Connexion</a></button>";
@@ -26,7 +25,8 @@
             <li><a id='accueil' href="/pratique-musique-12/index.php">Accueil</a></li>
             <li class="deroulant"><a class='deroulant' href="/pratique-musique-12/pages/rubriques.php">Rubriques</a>
                 <ul class="sous">
-                    <li class="deroulant" id="rubriques"><a href="/pratique-musique-12/pages/rubriques.php">Rubriques</a></li>
+                    <li class="deroulant" id="rubriques"><a
+                                href="/pratique-musique-12/pages/rubriques.php">Rubriques</a></li>
                     <li><a href="/pratique-musique-12/pages/rubriques/eveil_musical.php">Eveil musical</a></li>
                     <li><a href="/pratique-musique-12/pages/rubriques/enseignements.php">Enseignements</a></li>
                     <li><a href="/pratique-musique-12/pages/rubriques/pratique_ensemble.php">Pratiques d'ensemble</a>
@@ -37,7 +37,16 @@
             </li>
             <li><a href="/pratique-musique-12/pages/structures.php">Structures</a></li>
             <li><a id='recherche' href="/pratique-musique-12/pages/recherche.php">Recherche</a></li>
-            <li><a id='contact' href="/pratique-musique-12/pages/contact.php">Contact</a>
+
+            <?php
+            if (isset($_SESSION['login'])) {
+                if (isset($_SESSION['admin'])) {
+                    echo "<li><a id='menu_admin' href='/pratique-musique-12/pages/admin.php'>Gestion du site</a>";
+                } else {
+                    echo "<li><a id='menu_structure' href='/pratique-musique-12/pages/struct_admin.php'>Gestion structure</a>";
+                }
+            }
+            ?>
         </ul>
     </nav>
 </header>
