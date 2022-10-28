@@ -174,6 +174,7 @@ class dbController
 
 	public function searchOffres($niveau, $rubrique, $localisation, $motCle)
 	{
+
 		$reqBase = "SELECT * FROM offres  WHERE nomRubrique = '$rubrique' AND niveau = '$niveau'  ";
 		if (isset($motCle)) {
 			$reqBase = $reqBase . "AND nomOffre LIKE '%{$motCle}%' AND description LIKE '%{$motCle}%' ;";
@@ -238,7 +239,6 @@ class dbController
 			echo "Error: impossible d'ajotuer la structure";
 		}
 	}
-
 
 	public function __destruct()
 	{

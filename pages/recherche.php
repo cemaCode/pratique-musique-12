@@ -23,6 +23,7 @@ include('head.php')
             <!-- -------------------- -->
 
             <!-- Liste déroulante NIVEAUX -->
+
             <label for="f_niveau">Selectionner le niveau:</label>
             <select name="f_niveau" id="niveau_offre">
                 <option value="Tous">Tous</option>
@@ -36,6 +37,7 @@ include('head.php')
 
             <!-- Zone recherche par texte  -->
             <label for="f_mot_cle">Mot clé:</label>
+
             <input placeholder="Mots clés a rechercher ... " type="search" id="mots_cle" name="f_mot_cle">
             <input type="button" value="Rechercher" onclick="afficherResultats()"></input>
             <!-- -------------------- -->

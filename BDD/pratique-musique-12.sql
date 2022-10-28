@@ -76,8 +76,10 @@ CREATE TABLE `STRUCTURES` (
   `siteInternet` varchar(50) NOT NULL,
   `adresse` varchar(50) NOT NULL,
   `codeInsee` CHAR(5) NOT NULL,
+  `mail` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`contact`),
-  FOREIGN KEY (`codeInsee`) references `COMMUNES`(`codeInsee`) ON DELETE CASCADE
+  FOREIGN KEY (`codeInsee`) references `COMMUNES`(`codeInsee`) ON DELETE CASCADE,
+  FOREIGN KEY (`mail`) references `UTILISATEURS`(`mail`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -122,7 +124,7 @@ CREATE TABLE `OFFRES` (
   `photo2` varchar(50) DEFAULT NULL,
   `photo3` varchar(50) DEFAULT NULL,
   `nomRubrique` varchar(50) NOT NULL,
-  `niveau` varchar(50) DEFAULT NULL,
+  `niveau` varchar(50) NOT NULL,
   `contact` varchar(50) NOT NULL,
   `nomInstrument` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idOffre`),
