@@ -40,10 +40,10 @@ as $structure) {
         if ($offre['contact'] == $structure['contact']) {
             ?>
             <div class="offre">
-                <script>
+           <!--      <script>
                     var slideIndex = 1;
                     showDivs(slideIndex);
-                </script>
+                </script> -->
                 <!--                    <div id="test_taille"></div>-->
                 <div class="img_container">
 
