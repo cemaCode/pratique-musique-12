@@ -174,9 +174,71 @@ class dbController
 
 	public function searchOffres($niveau, $rubrique, $localisation, $motCle)
 	{
+		$reqBase = "SELECT * FROM offres  WHERE nomRubrique = '$rubrique' AND niveau = '$niveau'  ";
+		if (isset($motCle)) {
+			$reqBase = $reqBase . "AND nomOffre LIKE '%{$motCle}%' AND description LIKE '%{$motCle}%' ;";
+		}
+		if ($result = $this->_mysqli->query($reqBase)) {
+			$dump = $result->fetch_all(MYSQLI_ASSOC);
 
-		// TODO 
+			$dump = array_unique($dump, SORT_REGULAR);
+
+			$result->free_result();
+		}
+		return $dump;
 	}
+
+	public function communeToInsee($codePostal, $commune)
+	{
+		$codeInsee = "99999";
+		$req = "SELECT codeInsee FROM communes WHERE codepostal='" . $codePostal . "' and nomCommune='" . $commune . "';";
+		if ($result = $this->_mysqli->query($req)) {
+			$codeInsee = $result->fetch_row();
+			$result->free_result();
+		}
+		return $codeInsee[0];
+	}
+
+
+	public function getCodePostalFromInsee($codeInsee)
+	{
+		$codePostal = "99999";
+		$req = "SELECT codepostal FROM communes WHERE codeInsee='" . $codeInsee . "';";
+		if ($result = $this->_mysqli->query($req)) {
+			$codePostal = $result->fetch_row();
+			$result->free_result();
+		}
+		return $codePostal[0];
+	}
+
+
+	public function getCommuneFromInsee($codeInsee)
+	{
+		$commune = "XXXXXX";
+		$req = "SELECT nomCommune FROM communes WHERE codeInsee='" . $codeInsee . "';";
+		if ($result = $this->_mysqli->query($req)) {
+			$commune = $result->fetch_row();
+			$result->free_result();
+		}
+		return $commune[0];
+	}
+
+	public function addStructure($nomStructure, $contact, $tel, $website, $adresse, $codePostal, $nomCommune, $mail = NULL)
+	{
+		$codeInsee = $this->communeToInsee($codePostal, $nomCommune);
+		// TODO : Variable cleaning and verification of inputs 
+		$req = "INSERT INTO `STRUCTURES` (`nomStructure`, `tel`, `siteInternet`, `adresse`, `contact`, `codeInsee`,`mail`)";
+		$req_values = " VALUES ('" . $nomStructure . "','" . $tel . "','" . $website . "','" . $adresse . "','" . $contact . "','" . $codeInsee . "',";
+		$null_mail = $mail == null ? "NULL" : "'" . $mail . "'";
+		$req_values  = $req_values . $null_mail . ");";
+		$req = $req . $req_values;
+		if ($result = $this->_mysqli->query($req)) {
+			echo "Structure: " . $nomStructure . " ajouté avc succès.";
+		} else {
+			echo "Error: impossible d'ajotuer la structure";
+		}
+	}
+
 
 	public function __destruct()
 	{
