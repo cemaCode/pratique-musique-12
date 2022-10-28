@@ -44,6 +44,7 @@ INSERT INTO `INSTRUMENTS` (`nomInstrument`) VALUES
 	('Violon');
 
 
+
 INSERT INTO `offres` (`idOffre`, `nomOffre`, `description`, `photo1`, `photo2`, `photo3`, `nomRubrique`, `niveau`, `contact`, `nomInstrument`) VALUES
 	('1', 'Cours de flute', 'Cours de flute traversière pour tous niveaux.', NULL, NULL, NULL, 'Enseignements', 'Tous', 'contact@mjcrodez.fr', 'Flûte'),
 	('2', 'Cours de piano', 'Cours de piano traversière pour tous niveaux.', NULL, NULL, NULL, 'Enseignements', 'Débutant', 'contact@mjcrodez.fr', 'Piano'),
@@ -53,4 +54,5 @@ INSERT INTO `offres` (`idOffre`, `nomOffre`, `description`, `photo1`, `photo2`, 
 	('6', 'Éveil musical 3', 'Éveil musical 3 : Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer malesuada tempor tincidunt. Praesent quis ipsum magna. Sed venenatis augue et dolor sodales finibus. Nulla facilisis, felis sit amet porttitor commodo, ipsum lorem consectetur tellus, non commodo orci eros non ex. Donec a ligula euismod, congue sapien ut, venenatis risus. Nam tristique dictum enim. Sed suscipit, ex eu scelerisque accumsan, sem.', 'img1.jpg', 'img2.jpg', 'img3.jpg', 'Éveil musical', 'Tous', 'contact@mjc_bozouls.fr', NULL),
 	('7', 'Éveil musical 4', 'Éveil musical 4 : Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer malesuada tempor tincidunt. Praesent quis ipsum magna. Sed venenatis augue et dolor sodales finibus. Nulla facilisis, felis sit amet porttitor commodo, ipsum lorem consectetur tellus, non commodo orci eros non ex. Donec a ligula euismod, congue sapien ut, venenatis risus. Nam tristique dictum enim. Sed suscipit, ex eu scelerisque accumsan, sem.', 'img1.jpg', 'img2.jpg', 'img3.jpg', 'Éveil musical', 'Tous', 'contact@centre_edu.fr', NULL),
 	('8', 'Éveil musical 5', 'Éveil musical 5 : Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer malesuada tempor tincidunt. Praesent quis ipsum magna. Sed venenatis augue et dolor sodales finibus. Nulla facilisis, felis sit amet porttitor commodo, ipsum lorem consectetur tellus, non commodo orci eros non ex. Donec a ligula euismod, congue sapien ut, venenatis risus. Nam tristique dictum enim. Sed suscipit, ex eu scelerisque accumsan, sem.', 'img1.jpg', 'img2.jpg', 'img3.jpg', 'Éveil musical', 'Tous', 'mjc@onet-le-chateau.fr', NULL);
+
 

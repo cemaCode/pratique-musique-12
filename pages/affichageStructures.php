@@ -42,6 +42,7 @@ if (isset($GLOBALS['structures'])) {
             <div class="offre">
                 <div class="slideshow_container">
 
+
                     <img loading="lazy" class="offre_<?php echo $index; ?>"
                          src="/pratique-musique-12/images/img_offres/<?php echo $offre['idOffre']; ?>/<?php echo $offre['photo1']; ?>"
                          alt="#">

@@ -23,7 +23,8 @@ include('head.php')
             <!-- -------------------- -->
 
             <!-- Liste déroulante NIVEAUX -->
-            <label for="f_mot_cle">Selectionner le niveau:</label>
+
+            <label for="f_niveau">Selectionner le niveau:</label>
             <select name="f_niveau" id="niveau_offre">
                 <option value="Tous">Tous</option>
                 <option value="Débutant">Débutant</option>
@@ -36,13 +37,16 @@ include('head.php')
 
             <!-- Zone recherche par texte  -->
             <label for="f_mot_cle">Mot clé:</label>
-            <input placeholder="Mots clés a rechercher ... " type="search" id="f_mot_cle" name="mots_cle">
-            <button>Rechercher</button>
+
+            <input placeholder="Mots clés a rechercher ... " type="search" id="mots_cle" name="f_mot_cle">
+            <input type="button" value="Rechercher" onclick="afficherResultats()"></input>
             <!-- -------------------- -->
         </form>
-
         <!-- ICI INSERER CARTE SI ON FINIT PAR LA RAJOUTER  -->
+        <script language="javascript" src="recherche.js"></script>
+        <div id="resultats">
 
+        </div>
 
     </section>
 
