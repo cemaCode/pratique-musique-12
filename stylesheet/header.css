@@ -27,8 +27,7 @@ body{
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background: rgb(255,238,228);
-    /*background: linear-gradient(162deg, rgba(255,59,0,0.7682423311121324) 0%, rgba(253,208,45,0.7990546560421043) 62%);*/
+    background: rgb(128, 117, 110);
 }
 
 header{
