@@ -240,6 +240,25 @@ class dbController
 		}
 	}
 
+
+	public function getCommunes(){
+		$req = 'SELECT nomCommune,codePostal FROM communes';
+		if ($result = $this->_mysqli->query($req)) {
+			$dump = $result->fetch_all(MYSQLI_ASSOC);
+			$result->free_result();
+		}
+		return $dump;
+	}
+
+	public function getStructUsers(){
+		$req = "SELECT mail FROM utilisateurs WHERE nomRole='Structure';";
+		if ($result = $this->_mysqli->query($req)) {
+			$dump = $result->fetch_all(MYSQLI_ASSOC);
+			$result->free_result();
+		}
+		return $dump;
+	}
+
 	public function __destruct()
 	{
 		$this->_mysqli->close();

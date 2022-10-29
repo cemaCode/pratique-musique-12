@@ -3,16 +3,17 @@ require_once('head.php')
 ?>
 
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/pratique-musique-12/testing/dbController.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/pratique-musique-12/testing/dbController.php");
 
 // Verifie si connecté, ca redirige à l'accueil sinon
-if(!isset($_SESSION['login'])){
+if (!isset($_SESSION['login'])) {
     header('Location: ../index.php');
-}elseif( !$_SESSION['admin']){
+} elseif (!$_SESSION['admin']) {
     header('Location: ../struct_admin.php');
 }
 
 ?>
+
 <body>
     <?php
     require_once('header.php');
@@ -72,7 +73,32 @@ if(!isset($_SESSION['login'])){
                     <label for="f_s_contact">Saisir l'adresse de la structure * :</label>
                     <input type="text" name="f_s_contact"><br>
 
+                    <label for="f_lieu">Choisir la commune * :</label>
+                    <select name="f_lieu">
+                        <?php
+                        $db = new dbController();
+                        $communes = $db->getCommunes();
 
+                        foreach ($communes as $commune) {
+                            echo "<option>";
+                            echo $commune['nomCommune'] . " - " . $commune['codePostal'];
+                            echo "</option>";
+                        }
+                        ?>
+                    </select><br>
+                    <label for="f_user"> Lier à un utilisateur </label>
+                    <select>
+                        <?php
+                        $utlisateurs = $db->getStructUsers();
+
+                        foreach ($utlisateurs as $utlisateur) {
+                            echo "<option>";
+                            echo $utlisateur['mail'];
+                            echo "</option>";
+                        }
+                        ?>
+
+                    </select><br>
 
                     <input type="button" value="Créer la structure ">
                 </form>
