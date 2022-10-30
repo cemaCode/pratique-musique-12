@@ -66,6 +66,7 @@ if (!isset($_SESSION['login'])) {
             border-bottom-left-radius: 5px;
             border-top-right-radius: 5px;
             font-size: medium;
+        
         }
     </style>
     <h2>Admin</h2>
@@ -81,9 +82,14 @@ if (!isset($_SESSION['login'])) {
                 <form action="POST">
                     <h4>Ajouter un utilisateur</h4>
                     <label for="f_mail">Saisir le mail * :</label>
-                    <input type="text" name="f_mail"><br>
+                    <input type="text" name="f_mail" id="f_mail"><br>
                     <label for="f_mdp">Saisir le mot de passe * :</label>
-                    <input type="text" name="f_mdp"><br>
+                    <input type="text" name="f_mdp" id="f_mdp"><br>
+                    <label for="f_role">Choisir le role de l'utilisateur * :</label>
+                    <select name="f_role" id="f_role">
+                        <option value="Administrateur">Administrateur</option>
+                        <option value="Structure">Structure</option>
+                    </select><br>
                     <input type="button" value="Créer l'utilisateur ">
                 </form>
             </div>
