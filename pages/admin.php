@@ -200,7 +200,18 @@ if (!isset($_SESSION['login'])) {
                     <input type="button" value="Créer l'offre ">
                 </form>
             </div>
-            <!-- Rese la modification et supression d'une offre  -->
+
+            <!-- TODO :  Reste la modification et supression d'une offre  -->
+        
+            <div class="form" id="f_txt_accueil">
+                <form action="POST">
+                    <h4>Ajouter un instrument :</h4>
+                    <label for="f_txt_accueil">Saisir le texte pour l'accueil :</label><br>
+                    <textarea rows="20" cols="65" type="text" name="f_txt_accueil" id="f_txt_accueil"></textarea><br>
+                    <input type="button" value="Modifier le texte">
+                </form>
+            </div>
+
         </div>
 
     </section>
