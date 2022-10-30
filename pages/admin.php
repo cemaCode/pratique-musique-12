@@ -4,7 +4,7 @@ require_once('head.php')
 
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/pratique-musique-12/testing/dbController.php");
-
+$db = new dbController();
 // Verifie si connecté, ca redirige à l'accueil sinon
 if (!isset($_SESSION['login'])) {
     header('Location: ../index.php');
@@ -73,7 +73,7 @@ if (!isset($_SESSION['login'])) {
     <section>
 
         <p>Bonjour, bienvenue sur la page d'accueil </p>
-        <p>Vous êtes connecté.e en tant que <?php echo $_SESSION['login']; ?></p>
+        <p>Vous êtes connecté.e en tant que <b><?php echo $_SESSION['login']; ?></b> .</p>
 
 
         <div id="formulaires">
@@ -128,7 +128,6 @@ if (!isset($_SESSION['login'])) {
                     <label for="f_s_lieu">Choisir la commune * :</label><br>
                     <select name="f_s_lieu" id="f_s_lieu">
                         <?php
-                        $db = new dbController();
                         $communes = $db->getCommunes();
 
                         foreach ($communes as $commune) {
@@ -175,7 +174,7 @@ if (!isset($_SESSION['login'])) {
                         <option value="Enseignements">Enseignements</option>
                         <option value="Éveil musical">Éveil musical</option>
                         <option value="Pratique d'ensemble">Pratique d'ensemble</option>
-                    </select>
+                    </select><br>
                     <!-- Liste déroulante NIVEAUX -->
                     <label for="f_o_niveau">Selectionner le niveau de l'offre :</label><br>
                     <select name="f_o_niveau" id="f_o_niveau">
@@ -185,12 +184,23 @@ if (!isset($_SESSION['login'])) {
                         <option value="Semi Pro">Semi Pro</option>
                         <option value="Pro">Pro</option>
                         <option value="Confirmé">Confirmé</option>
-                    </select>
+                    </select><br>
                     <label for="f_o_instru">Selectionner un instrument :</label><br>
+                    <select name="f_o_instru" id="f_o_instru">
+                        <?php
+                        $instruments = $db->getInstruments();
 
+                        foreach ($instruments as $instrument) {
+                            echo "<option>";
+                            echo $instrument['nomInstrument'];
+                            echo "</option>";
+                        }
+                        ?>
+                    </select><br>
                     <input type="button" value="Créer l'offre ">
                 </form>
             </div>
+            <!-- Rese la modification et supression d'une offre  -->
         </div>
 
     </section>

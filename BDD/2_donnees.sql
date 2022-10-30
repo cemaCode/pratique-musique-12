@@ -6,7 +6,8 @@ INSERT INTO `ROLES` (`nomRole`) VALUES
 INSERT INTO `UTILISATEURS` (`mail`, `motDePasse`, `nomRole`) VALUES
 	('elmolghc@3il.fr', 'chaker', 'Administrateur'),
 	('lefrancl@3il.fr', 'lisa', 'Administrateur'),
-	('admin@leclub.fr', 'leclub', 'Structure');
+	('admin@leclub.fr', 'leclub', 'Structure'),
+	('contact@mjc_bozouls.fr', 'mjc', 'Structure');
 
 
 INSERT INTO `STRUCTURES` (`nomStructure`, `tel`, `siteInternet`, `adresse`, `contact`, `codeInsee`, `mail`) VALUES
