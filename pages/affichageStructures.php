@@ -22,8 +22,8 @@ if (isset($GLOBALS['structures'])) {
         <h3><?php echo $structure['nomStructure']; ?></h3>
         <p class="siteInternet"><?php echo $structure['siteInternet']; ?></p>
         <p class="adresse"><?php echo $structure['adresse']; ?></p>
-        <p class="code_postal"><?php //echo $db->getCodePostalFromInsee($structure['codeInsee']); ?>></p>
-        <p class="ville"><?php //echo $db->getCommuneFromInsee($structure['codeInsee']); ?>></p>
+        <p class="code_postal"><?php echo $db->getCodePostalFromInsee($structure['codeInsee']); ?></p>
+        <p class="ville"><?php echo $db->getCommuneFromInsee($structure['codeInsee']); ?></p>
         <p class="tel"><?php echo $structure['tel']; ?></p>
         <p class="contact"><?php echo $structure['contact']; ?></p>
         <button onclick="toggleVisibility('<?php echo $structure['tel'] ?>')">Voir les offres «

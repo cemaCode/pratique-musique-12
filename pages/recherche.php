@@ -43,6 +43,14 @@ include('head.php')
             <!-- -------------------- -->
         </form>
         <!-- ICI INSERER CARTE SI ON FINIT PAR LA RAJOUTER  -->
+        
+        <!-- <div class="map__img">
+            <img width="auto" height="65%" src="carte" alt="Carte de l'aveyron" srcset="/pratique-musique-12/testing/carte/Carte_du_Rouergue.svg" />
+        </div> -->
+
+
+
+        
         <script language="javascript" src="recherche.js"></script>
         <div id="resultats">
 
