@@ -3,6 +3,10 @@ p {
 }
 
 
+section {
+    }
+
+
 .structure {
     padding: 10px;
     margin: 10px 0;
@@ -37,12 +41,21 @@ p {
     display: inline;
 }
 
-.voir-offres, .offre {
+.offre {
     margin-top: 10px;
 }
 
 .hide {
     display: none;
+}
+
+.content {
+    padding: 10px;
+}
+
+.voir-offres {
+    position: absolute;
+    bottom: 0;
 }
 
 /****************** SLIDESHOW **************************/
@@ -51,12 +64,13 @@ img {vertical-align: middle;}
 /* Slideshow container */
 .slideshow_container {
     display: block;
-    min-width: 270px;
-    max-width: 270px;
-    min-height: 270px;
-    max-height: 270px;
+    min-width: 220px;
+    max-width: 220px;
+    min-height: 220px;
+    max-height: 220px;
     position: relative;
     margin: 0px;
+    padding: 10px;
 }
 
 /* Next & previous buttons */
@@ -77,7 +91,7 @@ img {vertical-align: middle;}
 
 /* Position the "next button" to the right */
 .next {
-    right: 20px;
+    right: 10px;
     border-radius: 3px 0 0 3px;
 }
 #arraySlides{

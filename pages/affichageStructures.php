@@ -26,7 +26,7 @@ if (isset($GLOBALS['structures'])) {
         <p class="ville"><?php echo $db->getCommuneFromInsee($structure['codeInsee']); ?></p>
         <p class="tel"><?php echo $structure['tel']; ?></p>
         <p class="contact"><?php echo $structure['contact']; ?></p>
-        <button onclick="toggleVisibility('<?php echo $structure['tel'] ?>')">Voir les offres «
+        <button class="voir-offres" onclick="toggleVisibility('<?php echo $structure['tel'] ?>')">Voir les offres «
             <i><?php echo $nomRubrique; ?></i> » de cette structure ⬎
         </button>
 
