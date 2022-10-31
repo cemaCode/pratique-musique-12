@@ -160,7 +160,7 @@ class dbController
 				if ($user_check == false) {
 					echo "<script>alert('Adresse mail non reconnue. ')</script>";
 				} else {
-					echo "<script>alert('Mot de passe incorrecte.')</script>";
+					echo "<script>alert('Mot de passe incorrect.')</script>";
 				}
 			}
 		}
