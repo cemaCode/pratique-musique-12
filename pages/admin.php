@@ -66,16 +66,25 @@ if (!isset($_SESSION['login'])) {
             border-bottom-left-radius: 5px;
             border-top-right-radius: 5px;
             font-size: medium;
-        
+
         }
+
     </style>
     <h2>Admin</h2>
     <section>
 
         <p>Bonjour, bienvenue sur la page d'accueil </p>
         <p>Vous êtes connecté.e en tant que <b><?php echo $_SESSION['login']; ?></b> .</p>
-
-
+        <p>Vous pouvez : </p>
+<span>
+           <a href='#f_ajout_user' <li>  - Ajouter un utilisateur </li></a>
+           <a href='#f_ajout_instrument' <li>  - Ajouter un instrument</li></a>
+           <a href='#f_ajout_struct' <li>  - Ajouter une structure</li></a>
+           <a href='#f_ajout_offre' <li>  - Ajouter une offre</li></a>
+           <a href='#f_modifer_offre' <li>  - Modifier une offre</li></a>
+           <a href='#f_suppr_offre' <li>  - Supprimer une offre</li></a>
+           <a href='#f_txt_accueil' <li>  - Modifier le texte de la page d'accueil</li></a>
+</span> <br>
         <div id="formulaires">
             <!-- **********USER******** -->
             <div class="form" id="f_ajout_user">
@@ -202,10 +211,52 @@ if (!isset($_SESSION['login'])) {
             </div>
 
             <!-- TODO :  Reste la modification et supression d'une offre  -->
-        
+
+
+            <div class="form" id="f_modifer_offre">
+                <h4>Modifier une offre :</h4>
+
+                <label for="f_m_offre">Chosir l'offre à modifier :</label><br>
+                <select name="f_m_offre" id="f_m_offre">
+                    <?php
+                    $offres = $db->getOffres();
+                    foreach ($offres as $offre) {
+                        echo "<option>";
+                        echo "#" . $offre['idOffre'] . " - " . $offre['nomOffre'];
+                        echo "</option>";
+                    }
+                    ?>
+
+                    <!-- TODO : a bunch of stuff -->
+
+                </select><br>
+                <input type="button" value="Modifier l'offre ">
+
+            </div>
+
+
+            <div class="form" id="f_suppr_offre">
+                <h4>Supprimer une offre :</h4>
+                <label for="f_s_offre">Chosir l'offre à modifier :</label><br>
+                <select name="f_s_offre" id="f_s_offre">
+
+                    <!-- TODO : a bunch of stuff -->
+
+                    <?php
+                    $offres = $db->getOffres();
+                    foreach ($offres as $offre) {
+                        echo "<option>";
+                        echo "#" . $offre['idOffre'] . " - " . $offre['nomOffre'];
+                        echo "</option>";
+                    }
+                    ?>
+                </select><br>
+                <input type="button" value="Supprimer l'offre ">
+            </div>
+
             <div class="form" id="f_txt_accueil">
                 <form action="POST">
-                    <h4>Ajouter un instrument :</h4>
+                    <h4>Modifier le texte de la page d'accueil :</h4>
                     <label for="f_txt_accueil">Saisir le texte pour l'accueil :</label><br>
                     <textarea rows="20" cols="65" type="text" name="f_txt_accueil" id="f_txt_accueil"></textarea><br>
                     <input type="button" value="Modifier le texte">

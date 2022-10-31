@@ -1,14 +1,4 @@
- <?php
-    include('pages/head.php')
- ?>
-
-<body>
-    <?php
-    include('pages/header.php');
-    ?>
-    <h2>AVEYRON 12</h2>
-    <section>
-        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit amet ipsum pellentesque, imperdiet diam id,
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit amet ipsum pellentesque, imperdiet diam id,
             imperdiet velit. Donec quis rhoncus est. Etiam dictum molestie neque, et placerat metus fermentum sed. Integer
             malesuada sapien a mauris aliquet, at iaculis lectus consectetur. Pellentesque pharetra quis ligula cursus
             vulputate. Sed eu leo non magna porta pharetra. Proin ornare augue ut sapien vestibulum pellentesque. Proin eu
@@ -87,14 +77,4 @@
             orci quam. Integer in odio sit amet nisi semper bibendum euismod a risus. Aliquam ornare urna ac mauris mollis
             cursus. Etiam feugiat auctor blandit. Suspendisse a mollis diam. Fusce eu venenatis lorem. Praesent cursus ac
             lacus sed finibus.
-        </p> -->
-        <?php 
-include('texte_accueil');
-?>
-</section>
-    <?php
-    include('pages/footer.php');
-    ?>
-</body>
-
-</html>
+        </p>

@@ -132,7 +132,7 @@ require_once('head.php')
                     $offres = $db->getOffresByUser($_SESSION['login']);
                     foreach ($offres as $offre) {
                         echo "<option>";
-                        echo $offre['nomOffre'] . " (ID: " . $offre['idOffre'] . ")";
+                        echo "#".$offre['idOffre']. " - " .$offre['nomOffre'];
                         echo "</option>";
                     }
                     ?>
@@ -156,7 +156,7 @@ require_once('head.php')
                     $offres = $db->getOffresByUser($_SESSION['login']);
                     foreach ($offres as $offre) {
                         echo "<option>";
-                        echo $offre['nomOffre'] . " (ID: " . $offre['idOffre'] . ")";
+                        echo "#".$offre['idOffre']. " - " .$offre['nomOffre'];
                         echo "</option>";
                     }
                     ?>

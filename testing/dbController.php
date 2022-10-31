@@ -26,16 +26,7 @@ class dbController
 		}
 	}
 
-	// Ajouter un instrument dans la table 'Intruments"
-	public function addInstrument($nomInstrument)
-	{
-		$req = "INSERT INTO `instruments` (`nomInstrument`) VALUES ('" . $nomInstrument . "')";
-		if ($result = $this->_mysqli->query($req)) {
-			echo "Instrument: " . $nomInstrument . " ajouté avc succès.";
-		} else {
-			echo "Error: impossible d'ajotuer l'instrument";
-		}
-	}
+
 
 	// Récupèrer une colonne de la table Rubriques
 	public function getRubriques()
@@ -73,7 +64,6 @@ class dbController
 
 
 	// Récupère un tableau de Structure par une Rubrique ( sans doublons )
-
 	public function getStructureByRubrique($nomRubrique)
 	{
 		$req = "SELECT nomStructure, structures.contact, tel, siteInternet, adresse, codeInsee FROM structures INNER JOIN offres ON structures.contact = offres.contact INNER JOIN rubriques ON rubriques.nomRubrique = offres.nomRubrique WHERE rubriques.nomRubrique = '{$nomRubrique}';  ";
@@ -100,6 +90,46 @@ class dbController
 		}
 		return $dump;
 	}
+
+	public function getOffres(){
+
+		$req = "SELECT * FROM offres ;";
+		if ($result = $this->_mysqli->query($req)) {
+			$dump = $result->fetch_all(MYSQLI_ASSOC);
+			$dump = array_unique($dump, SORT_REGULAR);
+			$result->free_result();
+		}
+		return $dump;
+	}
+
+
+	// Récupère un tableau d'offres par une rubrique 
+	public function getOffresByRubrique($nomRubrique)
+	{
+		$req = "SELECT * FROM offres  WHERE nomRubrique = '{$nomRubrique}';  ";
+		if ($result = $this->_mysqli->query($req)) {
+			$dump = $result->fetch_all(MYSQLI_ASSOC);
+
+			$dump = array_unique($dump, SORT_REGULAR);
+
+			$result->free_result();
+		}
+		return $dump;
+	}
+
+	public function getOffresByUser($mail)
+	{
+		$req = "SELECT * FROM offres  WHERE contact = '" . $mail . "';  ";
+		if ($result = $this->_mysqli->query($req)) {
+			$dump = $result->fetch_all(MYSQLI_ASSOC);
+
+			$dump = array_unique($dump, SORT_REGULAR);
+
+			$result->free_result();
+		}
+		return $dump;
+	}
+
 
 	// Verfie si l'utilisateur exite ( BOOL )
 	private function existsUser($user_mail)
@@ -155,26 +185,33 @@ class dbController
 			}
 		}
 	}
-
-	// REcupère un tableau d'offres par une rubrique 
-
-	public function getOffresByRubrique($nomRubrique)
+	private function isMailUsed($mail)
 	{
-		$req = "SELECT * FROM offres  WHERE nomRubrique = '{$nomRubrique}';  ";
+		$isMailUsed = false;
+		$req = "SELECT * from utilisateurs where mail='$mail'";
 		if ($result = $this->_mysqli->query($req)) {
-			$dump = $result->fetch_all(MYSQLI_ASSOC);
-
-			$dump = array_unique($dump, SORT_REGULAR);
-
-			$result->free_result();
+			if ($result->num_rows != 0) {
+				$isMailUsed = true;
+			}
 		}
-		return $dump;
+		return $isMailUsed;
 	}
 
+	private function instrumentExists($nomInstrument)
+	{
+		$instrumentExists = false;
+		$req = "SELECT * from instruments where nomInstrument='" . $nomInstrument . "'";
+		if ($result = $this->_mysqli->query($req)) {
+			if ($result->num_rows != 0) {
+				$instrumentExists = true;
+			}
+		}
+		return $instrumentExists;
+	}
 
 	public function searchOffres($niveau, $rubrique, $localisation, $motCle)
 	{
-
+		$rubrique = $this->cleanInput($rubrique);
 		$reqBase = "SELECT * FROM offres  WHERE nomRubrique = '$rubrique' AND niveau = '$niveau'  ";
 		if (isset($motCle)) {
 			$reqBase = $reqBase . "AND nomOffre LIKE '%{$motCle}%' AND description LIKE '%{$motCle}%' ;";
@@ -224,6 +261,60 @@ class dbController
 		return $commune[0];
 	}
 
+
+
+	public function getCommunes()
+	{
+		$req = 'SELECT nomCommune,codePostal FROM communes';
+		if ($result = $this->_mysqli->query($req)) {
+			$dump = $result->fetch_all(MYSQLI_ASSOC);
+			$result->free_result();
+		}
+		return $dump;
+	}
+
+	public function getStructUsers()
+	{
+		$req = "SELECT mail FROM utilisateurs WHERE nomRole='Structure';";
+		if ($result = $this->_mysqli->query($req)) {
+			$dump = $result->fetch_all(MYSQLI_ASSOC);
+			$result->free_result();
+		}
+		return $dump;
+	}
+
+	/* _-_-_-_-_-_-_- FONCTIONS D'AJOUT _-_-_-_-_-_-_- */
+
+	public function addUser($mail, $passwd, $role)
+	{
+		if ($this->isMailUsed($mail) == true) {
+			$req = "INSERT INTO `utilisateurs` (`mail`,`motDePasse`,`nomRole`) VALUES ('" . $mail . "','" . $passwd . "','" . $role . "')";
+			if ($result = $this->_mysqli->query($req)) {
+				echo "Utilisateur: " . $mail . " ajouté avc succès.";
+			} else {
+				echo "Error: impossible d'ajotuer l'utilisateur";
+			}
+		} else {
+			echo "Error: impossible d'ajotuer l'utilisateur, cette adresse mail est déjà utilisée";
+		}
+	}
+
+	// Ajouter un instrument dans la table 'Intruments"
+	public function addInstrument($nomInstrument)
+	{
+		if ($this->instrumentExists($nomInstrument == true)) {
+			$req = "INSERT INTO `instruments` (`nomInstrument`) VALUES ('" . $nomInstrument . "')";
+			if ($result = $this->_mysqli->query($req)) {
+				echo "Instrument: " . $nomInstrument . " ajouté avc succès.";
+			} else {
+				echo "Error: impossible d'ajotuer l'instrument";
+			}
+		} else {
+			echo "Error: impossible d'ajotuer l'instrument, l'instrument existe déjà";
+		}
+	}
+
+	// Ajouter une structure dans la table 'Structures"
 	public function addStructure($nomStructure, $contact, $tel, $website, $adresse, $codePostal, $nomCommune, $mail = NULL)
 	{
 		$codeInsee = $this->communeToInsee($codePostal, $nomCommune);
@@ -241,22 +332,26 @@ class dbController
 	}
 
 
-	public function getCommunes(){
-		$req = 'SELECT nomCommune,codePostal FROM communes';
-		if ($result = $this->_mysqli->query($req)) {
-			$dump = $result->fetch_all(MYSQLI_ASSOC);
-			$result->free_result();
-		}
-		return $dump;
+
+	public function addOffre()
+	{
+		// TODO 
 	}
 
-	public function getStructUsers(){
-		$req = "SELECT mail FROM utilisateurs WHERE nomRole='Structure';";
-		if ($result = $this->_mysqli->query($req)) {
-			$dump = $result->fetch_all(MYSQLI_ASSOC);
-			$result->free_result();
-		}
-		return $dump;
+	public function modifyOffre()
+	{
+		// TODO
+	}
+
+	public function deleteOffre()
+	{
+		// TODO 
+	}
+
+
+	public function changeFrontPageText($text)
+	{
+		file_put_contents("texte_accueil",$text);//Mettre à jout chemin du fichier
 	}
 
 	public function __destruct()
