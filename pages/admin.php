@@ -68,7 +68,6 @@ if (!isset($_SESSION['login'])) {
             font-size: medium;
 
         }
-
     </style>
     <h2>Admin</h2>
     <section>
@@ -76,15 +75,15 @@ if (!isset($_SESSION['login'])) {
         <p>Bonjour, bienvenue sur la page d'accueil </p>
         <p>Vous êtes connecté.e en tant que <b><?php echo $_SESSION['login']; ?></b> .</p>
         <p>Vous pouvez : </p>
-<span>
-           <a href='#f_ajout_user' <li>  - Ajouter un utilisateur </li></a>
-           <a href='#f_ajout_instrument' <li>  - Ajouter un instrument</li></a>
-           <a href='#f_ajout_struct' <li>  - Ajouter une structure</li></a>
-           <a href='#f_ajout_offre' <li>  - Ajouter une offre</li></a>
-           <a href='#f_modifer_offre' <li>  - Modifier une offre</li></a>
-           <a href='#f_suppr_offre' <li>  - Supprimer une offre</li></a>
-           <a href='#f_txt_accueil' <li>  - Modifier le texte de la page d'accueil</li></a>
-</span> <br>
+        <span>
+            <a href='#f_ajout_user' <li> - Ajouter un utilisateur </li></a>
+            <a href='#f_ajout_instrument' <li> - Ajouter un instrument</li></a>
+            <a href='#f_ajout_struct' <li> - Ajouter une structure</li></a>
+            <a href='#f_ajout_offre' <li> - Ajouter une offre</li></a>
+            <a href='#f_modifer_offre' <li> - Modifier une offre</li></a>
+            <a href='#f_suppr_offre' <li> - Supprimer une offre</li></a>
+            <a href='#f_txt_accueil' <li> - Modifier le texte de la page d'accueil</li></a>
+        </span> <br>
         <div id="formulaires">
             <!-- **********USER******** -->
             <div class="form" id="f_ajout_user">
@@ -99,8 +98,30 @@ if (!isset($_SESSION['login'])) {
                         <option value="Administrateur">Administrateur</option>
                         <option value="Structure">Structure</option>
                     </select><br>
-                    <input type="button" value="Créer l'utilisateur ">
+                    <input type="button" value="Créer l'utilisateur " onclick="addUser()">
                 </form>
+                <i>
+                    <div id="result_f_ajout_user"></div>
+                </i>
+                <form>
+                    <h4>Supprimer un utilisateur :</h4>
+                    <label for="f_s_user">Choisr l'utilisateur à supprimer :</label><br>
+                    <select name="f_s_user" id="f_s_user">
+                        <?php
+                        $users = $db->getUsers();
+
+                        foreach ($users as $user) {
+                            echo "<option>";
+                            echo $user['mail'] . " | " . $user['nomRole'];
+                            echo "</option>";
+                        }
+                        ?>
+                    </select><br>
+                    <input type="button" value="Supprimer l'utilisateur" onclick="deleteUser()">
+                </form>
+                <i>
+                    <div id="result_f_suppr_utilisateur"></div>
+                </i>
             </div>
 
             <!-- **********INSTRUMENT******** -->
@@ -109,8 +130,32 @@ if (!isset($_SESSION['login'])) {
                     <h4>Ajouter un instrument :</h4>
                     <label for="f_i_instru">Saisir le nom d'instrument :</label><br>
                     <input type="text" name="f_i_instru" id="f_i_instru"><br>
-                    <input type="button" value="Ajouter l'instrument">
+                    <input type="button" value="Ajouter l'instrument" onclick="addInstrument()">
                 </form>
+                <i>
+                    <div id="result_f_ajout_instrument"></div>
+                </i>
+
+                <form action="POST">
+                    <h4>Supprimer un instrument :</h4>
+                    <label for="f_s_instru">Choisr l'instrument à supprimer :</label><br>
+                    <select name="f_s_instru" id="f_s_instru">
+                        <?php
+                        $instruments = $db->getInstruments();
+
+                        foreach ($instruments as $instrument) {
+                            echo "<option>";
+                            echo $instrument['nomInstrument'];
+                            echo "</option>";
+                        }
+                        ?>
+                    </select><br>
+                    <input type="button" value="Supprimer l'instrument" onclick="deleteInstrument()">
+                </form>
+                <i>
+                    <div id="result_f_suppr_instrument"></div>
+                </i>
+
             </div>
 
             <!-- **********STRUCT******** -->
@@ -131,23 +176,24 @@ if (!isset($_SESSION['login'])) {
                     <label for="f_s_website">Saisir le site internet * :</label>
                     <input type="text" name="f_s_website" id="f_s_website"><br>
 
-                    <label for="f_s_contact">Saisir l'adresse de la structure * :</label>
-                    <input type="text" name="f_s_contact" id="f_s_contact"><br>
+                    <label for="f_s_adresse">Saisir l'adresse de la structure * :</label>
+                    <input type="text" name="f_s_adresse" id="f_s_adresse"><br>
 
-                    <label for="f_s_lieu">Choisir la commune * :</label><br>
-                    <select name="f_s_lieu" id="f_s_lieu">
+                    <label for="f_s_commune">Choisir la commune * :</label><br>
+                    <select name="f_s_commune" id="f_s_commune">
                         <?php
                         $communes = $db->getCommunes();
 
                         foreach ($communes as $commune) {
-                            echo "<option>";
+                            echo "<option value='" . $commune['codeInsee'] . "'>";
                             echo $commune['nomCommune'] . " - " . $commune['codePostal'];
                             echo "</option>";
                         }
                         ?>
                     </select><br>
-                    <label for="f_s_user"> Lier à un utilisateur </label><br>
-                    <select name="f_s_user" id="f_s_user">
+                    <label for="f_s_userlink"> Lier à un utilisateur </label><br>
+                    <select name="f_s_userlink" id="f_s_userlink">
+                        <option></option>
                         <?php
                         $utlisateurs = $db->getStructUsers();
 
@@ -159,21 +205,41 @@ if (!isset($_SESSION['login'])) {
                         ?>
                     </select><br>
 
-                    <input type="button" value="Créer la structure" onclick="creerStructure()">
+                    <input type="button" value="Créer la structure" onclick="addStructure()">
                 </form>
+                <div id="result_f_ajout_struct"> </div>
+                <form action="POST">
+                    <h4>Supprimer une structure :</h4>
+                    <label for="f_del_struct">Choisr la structure à supprimer :</label><br>
+                    <select name="f_del_struct" id="f_del_struct">
+                        <?php
+                        $structures = $db->getStructures();
+
+                        foreach ($structures as $structure) {
+                            echo "<option >";
+                            echo $structure['nomStructure'] . " | " . $structure['contact'];
+                            echo "</option>";
+                        }
+                        ?>
+                    </select><br>
+                    <input type="button" value="Supprimer la structure" onclick="deleteStructure()">
+                </form>
+                <i>
+                    <div id="result_f_del_struct"></div>
+                </i>
             </div>
 
             <!-- **********OFFRE******** -->
             <div class="form" id="f_ajout_offre">
 
-                <form action="POST">
-                    <h4>Ajouter une offre :</h4>
-                    <label for="f_o_nom">Saisir nom de l'offre :</label><br>
+                <form enctype=”multipart/form-data” action="POST">
+                    <h4>Ajouter une offre : </h4>
+                    <label for="f_o_nom">Saisir nom de l'offre* :</label><br>
                     <input type="text" name="f_o_nom" id="f_o_nom"><br>
                     <label for="f_mdp">Saisir la description de l'offre :</label><br>
                     <textarea rows="4" cols="30" type="tex" id="f_o_desc" name="f_o_desc"></textarea><br>
                     <label for="f_o_img">Choisir les 3 images pour l'offre * : </label><br>
-                    <input type="file" id="f_ajout_offre" d="f_o_img_1" accept="image/png, image/jpeg"><br>
+                    <input type="file" id="f_o_img_1" accept="image/png, image/jpeg"><br>
                     <input type="file" id="f_o_img_2" accept="image/png, image/jpeg"><br>
                     <input type="file" id="f_o_img_3" accept="image/png, image/jpeg"><br>
                     <label for="f_rubrique">Selectionner la rubrique de l'offre :</label><br>
@@ -206,11 +272,13 @@ if (!isset($_SESSION['login'])) {
                         }
                         ?>
                     </select><br>
-                    <input type="button" value="Créer l'offre ">
+                    <input type="button" value="Créer l'offre " onclick="addOffre()">
                 </form>
+                <div id="result_f_ajout_offre"></div>
+
             </div>
 
-            <!-- TODO :  Reste la modification et supression d'une offre  -->
+
 
 
             <div class="form" id="f_modifer_offre">
@@ -238,32 +306,36 @@ if (!isset($_SESSION['login'])) {
             <div class="form" id="f_suppr_offre">
                 <h4>Supprimer une offre :</h4>
                 <label for="f_s_offre">Chosir l'offre à modifier :</label><br>
-                <select name="f_s_offre" id="f_s_offre">
+                <select name="f_s_offre" id="s_offre">
 
                     <!-- TODO : a bunch of stuff -->
-
                     <?php
                     $offres = $db->getOffres();
                     foreach ($offres as $offre) {
                         echo "<option>";
-                        echo "#" . $offre['idOffre'] . " - " . $offre['nomOffre'];
+                        echo  $offre['idOffre'] . "#  - " . $offre['nomOffre'];
                         echo "</option>";
                     }
                     ?>
                 </select><br>
-                <input type="button" value="Supprimer l'offre ">
+                <input type="button" value="Supprimer l'offre " onclick="deleteOffre();">
+                <div id="result_f_suppr_offre"></div>
             </div>
 
             <div class="form" id="f_txt_accueil">
                 <form action="POST">
                     <h4>Modifier le texte de la page d'accueil :</h4>
                     <label for="f_txt_accueil">Saisir le texte pour l'accueil :</label><br>
-                    <textarea rows="20" cols="65" type="text" name="f_txt_accueil" id="f_txt_accueil"></textarea><br>
-                    <input type="button" value="Modifier le texte">
+                    <textarea rows="20" cols="65" type="text" name="f_txt_accueil" id="txt_accueil"></textarea><br>
+                    <input type="button" value="Modifier le texte" onclick="modifyText();">
                 </form>
+
+                <div id="result_f_txt_accueil"></div>
             </div>
 
         </div>
+
+        <script language="javascript" src="admin.js"></script>
 
     </section>
 

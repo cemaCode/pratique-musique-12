@@ -37,7 +37,7 @@ CREATE TABLE `ROLES` (
 
 CREATE TABLE `UTILISATEURS` (
   `mail` varchar(50) NOT NULL,
-  `motDePasse` varchar(50) NOT NULL,
+  `motDePasse` varchar(150) NOT NULL,
   `nomRole` varchar(30) NOT NULL,
   PRIMARY KEY (`mail`),
   FOREIGN KEY (`nomRole`) references `ROLES`(`nomRole`) ON DELETE CASCADE
