@@ -4,10 +4,10 @@ INSERT INTO `ROLES` (`nomRole`) VALUES
 
 
 INSERT INTO `UTILISATEURS` (`mail`, `motDePasse`, `nomRole`) VALUES
-	('elmolghc@3il.fr', 'chaker', 'Administrateur'),
-	('lefrancl@3il.fr', 'lisa', 'Administrateur'),
-	('admin@leclub.fr', 'leclub', 'Structure'),
-	('contact@mjc_bozouls.fr', 'mjc', 'Structure');
+	('elmolghc@3il.fr', '$2y$10$c1cLMHUQFJ1NShwXyBJXFe5UTW3ko3v98idrBZrqcDZWnpCA7gcQW', 'Administrateur'),
+	('lefrancl@3il.fr', '$2y$10$cbj0t6JFf95j8mLYHuzfiuiXR6TN3eniuyDJ7aG/I8wxmIpERwTqi', 'Administrateur'),
+	('admin@leclub.fr', '$2y$10$EAKZGUKBrYH0.gg5AuqqVeeJLDuOxi5IGTvwD18eVfS0uTq2wOqsu', 'Structure'),
+	('contact@mjc_bozouls.fr', '$2y$10$xJvblckFY4KLuETZ.xD7UuZ8D/64yYE2v6HzU.0YnjQsBbqnZaMFK', 'Structure');
 
 
 INSERT INTO `STRUCTURES` (`nomStructure`, `tel`, `siteInternet`, `adresse`, `contact`, `codeInsee`, `mail`) VALUES

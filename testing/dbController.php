@@ -91,7 +91,8 @@ class dbController
 		return $dump;
 	}
 
-	public function getOffres(){
+	public function getOffres()
+	{
 
 		$req = "SELECT * FROM offres ;";
 		if ($result = $this->_mysqli->query($req)) {
@@ -149,21 +150,22 @@ class dbController
 	public function checkLogin($mail, $passwd)
 	{
 		$isLoginValid = false;
-		$req = "SELECT * from utilisateurs where mail='$mail' and motDePasse='$passwd'";
+		$req = "SELECT motDePasse from utilisateurs where mail='$mail'";
 		if ($result = $this->_mysqli->query($req)) {
 			if ($result->num_rows != 0) {
-				$isLoginValid = true;
-				$this->isAdmin($mail);
-				// echo "<script>alert('Connexion reussie. ')</script>";
-			} else {
-				$user_check = $this->existsUser($mail);
-				if ($user_check == false) {
-					echo "<script>alert('Adresse mail non reconnue. ')</script>";
+				$hash = $result->fetch_all()[0][0];
+				$check_passwd = password_verify($passwd, $hash);
+				if ($check_passwd) {
+					$isLoginValid = true;
+					$this->isAdmin($mail);
 				} else {
 					echo "<script>alert('Mot de passe incorrect.')</script>";
 				}
+			} else {
+				echo "<script>alert('Adresse mail non reconnue. ')</script>";
 			}
 		}
+
 		echo ($isLoginValid);
 		return $isLoginValid;
 	}
@@ -265,7 +267,7 @@ class dbController
 
 	public function getCommunes()
 	{
-		$req = 'SELECT nomCommune,codePostal FROM communes';
+		$req = 'SELECT * FROM communes';
 		if ($result = $this->_mysqli->query($req)) {
 			$dump = $result->fetch_all(MYSQLI_ASSOC);
 			$result->free_result();
@@ -273,6 +275,15 @@ class dbController
 		return $dump;
 	}
 
+	public function getUsers()
+	{
+		$req = "SELECT * FROM utilisateurs";
+		if ($result = $this->_mysqli->query($req)) {
+			$dump = $result->fetch_all(MYSQLI_ASSOC);
+			$result->free_result();
+		}
+		return $dump;
+	}
 	public function getStructUsers()
 	{
 		$req = "SELECT mail FROM utilisateurs WHERE nomRole='Structure';";
@@ -287,7 +298,10 @@ class dbController
 
 	public function addUser($mail, $passwd, $role)
 	{
-		if ($this->isMailUsed($mail) == true) {
+		if (!$this->isMailUsed($mail)) {
+
+			$passwd  = $this->cleanInput($passwd);
+			$passwd =  password_hash($passwd, PASSWORD_DEFAULT);
 			$req = "INSERT INTO `utilisateurs` (`mail`,`motDePasse`,`nomRole`) VALUES ('" . $mail . "','" . $passwd . "','" . $role . "')";
 			if ($result = $this->_mysqli->query($req)) {
 				echo "Utilisateur: " . $mail . " ajouté avc succès.";
@@ -302,22 +316,24 @@ class dbController
 	// Ajouter un instrument dans la table 'Intruments"
 	public function addInstrument($nomInstrument)
 	{
-		if ($this->instrumentExists($nomInstrument == true)) {
+		$succes = false;
+		if (!$this->instrumentExists($nomInstrument)) {
 			$req = "INSERT INTO `instruments` (`nomInstrument`) VALUES ('" . $nomInstrument . "')";
 			if ($result = $this->_mysqli->query($req)) {
 				echo "Instrument: " . $nomInstrument . " ajouté avc succès.";
+				$succes = true;
 			} else {
 				echo "Error: impossible d'ajotuer l'instrument";
 			}
 		} else {
-			echo "Error: impossible d'ajotuer l'instrument, l'instrument existe déjà";
+			echo "Error: impossible d'ajotuer l'instrument $nomInstrument, l'instrument existe déjà";
 		}
+		return $succes;
 	}
 
 	// Ajouter une structure dans la table 'Structures"
-	public function addStructure($nomStructure, $contact, $tel, $website, $adresse, $codePostal, $nomCommune, $mail = NULL)
+	public function addStructure($nomStructure, $contact, $tel, $website, $adresse, $codeInsee, $mail = NULL)
 	{
-		$codeInsee = $this->communeToInsee($codePostal, $nomCommune);
 		// TODO : Variable cleaning and verification of inputs 
 		$req = "INSERT INTO `STRUCTURES` (`nomStructure`, `tel`, `siteInternet`, `adresse`, `contact`, `codeInsee`,`mail`)";
 		$req_values = " VALUES ('" . $nomStructure . "','" . $tel . "','" . $website . "','" . $adresse . "','" . $contact . "','" . $codeInsee . "',";
@@ -343,15 +359,66 @@ class dbController
 		// TODO
 	}
 
-	public function deleteOffre()
+	public function deleteOffre($idOffre)
 	{
-		// TODO 
+		$exists = false;
+		$req = "SELECT * from offres where idOffre ='$idOffre'";
+		if ($result = $this->_mysqli->query($req)) {
+			if ($result->num_rows != 0) {
+				$exists = true;
+			}
+		}
+		if ($exists) {
+			$req =  "DELETE FROM offres WHERE `offres`.`idOffre` = '" . $idOffre . "' ";
+			$result = $this->_mysqli->query($req);
+		}
+		return $exists;
 	}
 
+	public function deleteInstrument($instrument)
+	{
+		$req =  "DELETE FROM instruments WHERE nomInstrument = '" . $instrument . "' ";
+		$result = $this->_mysqli->query($req);
+		return $result;
+	}
+
+	public function deleteUser($mail)
+	{
+		$exists = false;
+		$req = "SELECT * FROM utilisateurs WHERE mail ='$mail'	";
+		if ($result = $this->_mysqli->query($req)) {
+			if ($result->num_rows != 0) {
+				$exists = true;
+			} else {
+				echo "Utilisateur $mail n'existe pas. \n";
+			}
+		}
+		if ($exists) {
+			$req =  "DELETE FROM utilisateurs WHERE mail = '" . $mail . "' ";
+			$result = $this->_mysqli->query($req);
+		}
+
+		if ($_SESSION['login'] == $mail) {
+			session_destroy();
+		}
+
+		return $exists;
+	}
+
+	public function deleteStructure($contact)
+	{
+		$this->cleanInput($contact);
+		$req =  "DELETE FROM structures WHERE contact = '" . $contact . "' ";
+		$result = $this->_mysqli->query($req);
+
+		return $result;
+	}
 
 	public function changeFrontPageText($text)
 	{
-		file_put_contents("texte_accueil",$text);//Mettre à jout chemin du fichier
+		$chemin_fichier = $_SERVER['DOCUMENT_ROOT'] . "/pratique-musique-12/texte_accueil";
+		echo $text;
+		file_put_contents($chemin_fichier, $text); //Mettre à jout chemin du fichier
 	}
 
 	public function __destruct()
