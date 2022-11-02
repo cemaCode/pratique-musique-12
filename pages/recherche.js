@@ -20,4 +20,4 @@ function afficherResultats() {
     xmlhttp.open("GET", "rechercheOffres.php?"+getRequest , true);
     xmlhttp.send();
 }
-  
+

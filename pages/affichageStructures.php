@@ -10,13 +10,14 @@ if (isset($GLOBALS['currentRubrique'])) {
 }
 
 if (isset($GLOBALS['structures'])) {
-    $stuctures = $GLOBALS['structures'];
-    foreach ($stuctures as $structure) {
+$stuctures = $GLOBALS['structures'];
+foreach ($stuctures as $structure) {
 ?>
+
 
 <div class="structure">
     <div class="img_container">
-        <img class="img_offre" src="/pratique-musique-12/images/placeholder.png" alt="image structure">
+        <img loading="lazy" class="img_offre" src="/pratique-musique-12/images/placeholder.png" alt="image structure">
     </div>
     <div class="content">
         <h3><?php echo $structure['nomStructure']; ?></h3>
@@ -41,25 +42,24 @@ if (isset($GLOBALS['structures'])) {
             ?>
             <div class="offre">
                 <div class="slideshow_container">
-
-
                     <img loading="lazy" class="offre_<?php echo $index; ?>"
-                         src="/pratique-musique-12/images/img_offres/<?php echo $offre['idOffre']; ?>/<?php echo $offre['photo1']; ?>"
-                         alt="#">
+                         src="/pratique-musique-12/images/img_offres/<?php echo $offre['idOffre']; ?>/<?php echo $offre['photo1']; ?>">
                     <img loading="lazy" class="offre_<?php echo $index; ?>"
-                         src="/pratique-musique-12/images/img_offres/<?php echo $offre['idOffre']; ?>/<?php echo $offre['photo2']; ?>"
-                         alt="#">
+                         src="/pratique-musique-12/images/img_offres/<?php echo $offre['idOffre']; ?>/<?php echo $offre['photo2']; ?>">
                     <img loading="lazy" class="offre_<?php echo $index; ?>"
-                         src="/pratique-musique-12/images/img_offres/<?php echo $offre['idOffre']; ?>/<?php echo $offre['photo3']; ?>"
-                         alt="#">
+                         src="/pratique-musique-12/images/img_offres/<?php echo $offre['idOffre']; ?>/<?php echo $offre['photo3']; ?>">
                     <a class="prev" onclick="plusSlides(-1, <?php echo $index; ?>)">&#10094;</a>
                     <a class="next" onclick="plusSlides(1, <?php echo $index; ?>)">&#10095;</a>
                 </div>
                 <div class="content">
                     <h3><?php echo $offre['nomOffre']; ?></h3>
-                    <p class="instrument"><?php echo $offre['nomInstrument']; ?></p>
-                    <p class="niveau"><?php echo $offre['niveau']; ?></p>
-                    <p class="description_offre"><?php echo $offre['description']; ?></p>
+                    <?php
+                        if (isset($offre['nomInstrument'])) {
+                            echo "<p class='instrument'><b>Instrument :</b> " . $offre['nomInstrument'] . "</p>";
+                        }
+                    ?>
+                    <p class="niveau"><b>Niveau :</b> <?php echo $offre['niveau']; ?></p>
+                    <p class="description_offre"><b>Description :</b> <?php echo $offre['description']; ?></p>
                 </div>
             </div>
 
@@ -77,6 +77,5 @@ if (isset($GLOBALS['structures'])) {
         exit;
     }
     ?>
-    <p id="arraySlides"><?php echo $arraySlides; ?>
-    <p>
+    <p id="arraySlides"><?php echo $arraySlides; ?></p>
         <script type="text/javascript" src="/pratique-musique-12/pages/functions.js"></script>

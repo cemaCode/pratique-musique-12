@@ -331,7 +331,21 @@ class dbController
 		}
 	}
 
-
+    private function createIdOffre()
+    {
+        $listeid = [];
+        $listeidPlus =[];
+        $newId = "";
+        $idTable = [];
+        $liste_offres = $this->getOffres();
+        foreach ($liste_offres as $offre) {
+            array_push($listeid,$offre['idOffre']);
+            array_push($listeidPlus,$offre['idOffre']+1);
+        }
+        $idTable = array_diff($listeidPlus, $listeid);
+        $newId=min($idTable);
+        return $newId;
+    }
 
 	public function addOffre()
 	{

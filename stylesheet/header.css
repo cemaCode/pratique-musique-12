@@ -1,118 +1,143 @@
-/* @charset "UTF-8"; */
-
-/*:root {*/
-/*    --contour: 20px solid purple;*/
-/*}*/
-
-/*header {*/
-/*    border: var(--contour);*/
-/*}*/
+:root {
+    --color_violet: #e6ccff;
+    --font: 'Optima', sans-serif;
+    --color_dark_violet: #440085;
+}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: var(--font);
 }
 
-html{
+a {
+    text-decoration: none;
+    color: var(--color_dark_violet);
+}
+
+
+html {
     width: 100%;
     height: 100%;
 }
 
-body{
-/*    width: 100%;*/
+body {
+    /*    width: 100%;*/
     height: 100%;
-    font-family: Arial;
+    font-family: var(--font);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background: rgb(128, 117, 110);
+    padding-top: 70px;
+    /* background: rgb(128, 117, 110); */
 }
 
-header{
+header {
     width: 100%;
+    background: linear-gradient(to bottom, var(--color_violet), 70%, transparent);
+    position: fixed;
+    top: 0;
+    height: 90px;
+    z-index: 1000;
 }
 
 h1 {
-    font-family: "Trebuchet MS";
-
+    font-size: 40px;
+    float: left;
+    position: fixed;
+    left: 0;
+    top: 0;
 }
 
 h1 a {
+    font-family: 'Noto Serif', serif;
     text-decoration: none;
-    border: solid 3px;
-    margin: 5px;
-    color: rgb(255,    238,    228);
-    background-color: rgb(105,39,5);
-    padding: 4px 15px;
-    border-bottom-right-radius: 15px;
-    border-top-left-radius: 15px;
+    /* border-right: solid 2px;
+    border-bottom: solid 2px; */
+    /* margin: 5px; */
+    color: var(--color_dark_violet);
+    /* background-color: var(--color_violet); */
+    padding: 1px 15px 5px 15px;
+    /* border-bottom-right-radius: 15px; */
+    /* border-top-left-radius: 15px; */
 }
 
-header button {
+/* ====================================================== */
+/* //////////// connexion / deconnexion ///////////////// */
+/* ====================================================== */
+.log{
     position: fixed;
-    top: 2px;
-    right: 2px;
+    top: 15px;
+    right: 20px;
+    color: var(--color_violet);
+    background-color: var(--color_dark_violet);
+    border: 2px solid var(--color_violet);
+    border-radius: 20px;
+    padding: 4px 10px 4px 10px;
+    font-family: var(--font);
+    text-decoration: none;
+    cursor: pointer;
+}
+.log a{
+    color: var(--color_violet);
+}
+.log:hover a{
+    color: var(--color_dark_violet);
+}
+.log:hover{
+    color: var(--color_dark_violet);
+    background-color: var(--color_violet);
+    border: 2px solid var(--color_dark_violet);
 }
 
 header input {
-    display: inline-block;
-    position: fixed;
-    top: 2px;
-    right: 2px;
+    margin: 0;
 }
 
-header h1{
+header h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+/* ====================================================== */
+/* ///////////////////// navbar ///////////////////////// */
+/* ====================================================== */
 header nav {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    /*background: rgb(207,    139,    100);*/
     height: 60px;
-    width: 100%;
-    background-color: #e5c7bc;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='46' viewBox='0 0 70 46'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23692705' fill-opacity='0.49'%3E%3Cpolygon points='68 44 62 44 62 46 56 46 56 44 52 44 52 46 46 46 46 44 40 44 40 46 38 46 38 44 32 44 32 46 26 46 26 44 22 44 22 46 16 46 16 44 12 44 12 46 6 46 6 44 0 44 0 42 8 42 8 28 6 28 6 0 12 0 12 28 10 28 10 42 18 42 18 28 16 28 16 0 22 0 22 28 20 28 20 42 28 42 28 28 26 28 26 0 32 0 32 28 30 28 30 42 38 42 38 0 40 0 40 42 48 42 48 28 46 28 46 0 52 0 52 28 50 28 50 42 58 42 58 28 56 28 56 0 62 0 62 28 60 28 60 42 68 42 68 0 70 0 70 46 68 46'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-
+    position: fixed;
+    top: 0px;
+    right: 150px;
 }
 
-#accueil::before{
-    content: url(/pratique-musique-12/icons/accueil.svg);
-    padding-right: 10px;
+svg {
+    fill: var(--color_dark_violet);
 }
 
-#recherche::before{
-    content: url(/pratique-musique-12/icons/rechercher.svg);
-    padding-right: 10px;
+#accueil svg ,#recherche svg,#contact svg,#menu_admin svg,#menu_structure svg{
+    margin-right: 10px;
 }
 
-#contact::before{
-    content: url(/pratique-musique-12/icons/contact.svg);
-    padding-right: 10px;
+header nav ul li a:hover{
+    color: var(--color_violet);
+    background-color: var(--color_dark_violet);
 }
 
-#menu_admin::before{
-    content: url("/pratique-musique-12/icons/settings.svg");
-    padding-right: 10px;
+#accueil:hover svg,#recherche:hover svg,#contact:hover svg,#menu_admin:hover svg,#menu_structure:hover svg{
+    fill: var(--color_violet);
 }
 
-#menu_structure:before{
-    content: url(/pratique-musique-12/icons/settings.svg);
-    padding-right: 10px;
-    padding-top: 2px;
-}
-
-header nav ul, header nav ul li {
+header nav ul,
+header nav ul li {
     display: flex;
     justify-content: space-evenly;
 }
-
 
 header nav ul li a {
     display: flex;
@@ -123,14 +148,13 @@ header nav ul li a {
     height: 30px;
     margin: 2% 2%;
     text-decoration: none;
-    /*border-radius: 5px;*/
-    background-color: rgb(255,    87,    0);
-    color: black;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    background-color: var(--color_violet);
+    color: var(--color_dark_violet);
+    border-radius: 20px;
+    border: 2px solid;
 }
 
-.deroulant > a::after {
+.deroulant>a::after {
     content: " ▼ ";
     padding-left: 10px;
     opacity: 80%;
@@ -142,69 +166,135 @@ header nav ul li a {
     z-index: 1000;
 }
 
-header nav > ul li:hover .sous {
+header nav>ul li:hover .sous {
     display: block;
 }
 
-.sous li{
+.sous li {
     float: none;
 }
 
+/* ====================================================== */
+/* ////////////////// contenu /////////////////////////// */
+/* ====================================================== */
 
-h2{
+
+h2 {
     display: flex;
-    align-items: center;
+    font-size: 30px;
+    position: absolute;
+    top: 110px;
+    left: 100px;
+    font-family: 'Noto Serif', serif;
 }
 
-section{
-/*    display: flex;
-    flex-direction: column;*/
+section {
+    z-index: 1;
+    position: fixed;
+    right: 0px;
     scroll-behavior: smooth;
     overflow-y: scroll;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    flex-grow:1;    /*Permet le callage du pieds de page en déformant la section par rapport aux autres objets*/
-    border-radius: 5px;
-    background-color: rgb(255,    238,    228);
+    align-items: right;
+    width: 70%;
+    height: calc(100% - 50px - 90px);
+    margin-top: 30px;
+    flex-grow: 1;
+    /*Permet le callage du pieds de page en déformant la section par rapport aux autres objets*/
+    border-radius: 20px 0 0 20px;
+    border: 2px solid var(--color_violet);
+    border-right: 0;
+    /* background-color: rgb(255, 238, 228); */
 }
 
-section>p{
-    margin: 1em;
+section {
+    padding: 20px;
 }
 
 /* ====================================================== */
-/* ////////////////////////////////////////////////////// */
 /* ///////////////////// Scrollbar ////////////////////// */
-/* ////////////////////////////////////////////////////// */
 /* ====================================================== */
 section::-webkit-scrollbar {
     width: 10px;
 }
 
 section::-webkit-scrollbar-thumb {
-    background: rgb(0, 63, 125);
+    background: var(--color_dark_violet);
     border-radius: 20px;
 }
 
 section::-webkit-scrollbar-track {
     border-radius: 20px;
 }
+
 /* ====================================================== */
-/* ////////////////////////////////////////////////////// */
-/* /////////////////// fin Scrollbar //////////////////// */
-/* ////////////////////////////////////////////////////// */
+/* /////////////////////// footer /////////////////////// */
 /* ====================================================== */
-footer{
+footer {
     display: flex;
     flex-direction: column;
-    background-color: rgb(255, 80, 3);
+    background: linear-gradient(to top, var(--color_violet), 70%, transparent);
     margin: auto;
     width: 100%;
-    text-align: center;
+    text-align: right;
+    padding: 6px;
+    position: fixed;
+    bottom: 0;
+    color: var(--color_dark_violet);
 }
 
 
-/*media queries*/
+/* ====================================================== */
+/* ///////////////// Notes qui défilent ///////////////// */
+/* ====================================================== */
 
-/*max 950px*/
+.notesQuiBougent {
+    z-index: -2;
+    position: fixed;
+    top: 65px;
+    /* border: 1px solid; */
+    /* left: 100vw; */
+    width: 100vw;
+    /* overflow: hidden; */
+    transition: all 2s;
+}
+
+.notesQuiBougent> :first-child {
+    display: inline-block;
+    /* modèle de boîte en ligne */
+    padding-right: 2em;
+    /* un peu d'espace pour la transition */
+    padding-left: 100%;
+    /* placement à droite du conteneur */
+    white-space: nowrap;
+    /* pas de passage à la ligne */
+    animation: defilement 100s infinite linear;
+    color: var(--color_dark_violet);
+}
+
+@keyframes defilement {
+    0% {
+        transform: translate3d(0, 0, 0);
+        /* position initiale à droite */
+    }
+
+    100% {
+        transform: translate3d(-100%, 0, 0);
+        /* position finale à gauche */
+
+    }
+}
+
+
+/* ====================================================== */
+/* /////////////////// media queries //////////////////// */
+/* ====================================================== */
+@media screen and (max-width: 980px) {
+    #navbar {
+        display: none;
+    }
+
+    h2 {
+        left: 10px;
+    }
+}
+

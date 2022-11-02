@@ -51,10 +51,12 @@ include('head.php')
 
 
         
-        <script language="javascript" src="recherche.js"></script>
+        <script type="text/javascript" src="recherche.js"></script>
+<!--        <script type="text/javascript" src="/pratique-musique-12/pages/functions.js"></script>-->
         <div id="resultats">
 
         </div>
+
 
     </section>
 
