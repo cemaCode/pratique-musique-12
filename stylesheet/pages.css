@@ -2,28 +2,24 @@ p {
     text-align: justify;
 }
 
-
-section {
-    }
-
+h2, h3 {
+    color: var(--color_dark_violet);
+}
 
 .structure {
     padding: 10px;
     margin: 10px 0;
-    /*background-color: grey;*/
-    /*background-color: rgb(229,    199,    188);*/
-    background: rgba(207,42,135,0.5);
+    background: #a7dabd;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(207,42,135,0.25);
 }
 
 
-
 .offre {
     width:80%;
     margin-left: 20%;
-    background-color: rgb(133, 115, 105);
+    background-color: #e0f2e8;
 }
 
 .offre, .structure {
@@ -53,15 +49,53 @@ section {
     padding: 10px;
 }
 
-.voir-offres {
-    position: absolute;
-    bottom: 0;
+.content b {
+    text-decoration: underline;
+    font-weight: normal;
 }
 
-/****************** SLIDESHOW **************************/
-img {vertical-align: middle;}
+.voir-offres {
+    position: absolute;
+    bottom: 15px;
+}
 
-/* Slideshow container */
+/* ====================================================== */
+/* ////////////////// Enseignements ///////////////////// */
+/* ====================================================== */
+.container_by_letter{
+    display: flex;
+    height: auto;
+    flex-direction: row;
+}
+
+
+.container_by_letter h3{
+    font-size: 70px;
+    width: 100px;
+    height: 100px;
+    border-right: 2px solid var(--color_dark_violet);
+    padding: 0px;
+    margin: 20px;
+}
+
+.container_by_letter ul{
+    vertical-align: center;
+    margin: 20px;
+}
+
+.container_by_letter ul li{
+   list-style-type: none;
+    padding: 5px;
+}
+
+/* ====================================================== */
+/* ///////////////////// slideshow ////////////////////// */
+/* ====================================================== */
+img {
+    vertical-align: middle;
+}
+
+
 .slideshow_container {
     display: block;
     min-width: 220px;
@@ -73,7 +107,7 @@ img {vertical-align: middle;}
     padding: 10px;
 }
 
-/* Next & previous buttons */
+
 .prev, .next {
     cursor: pointer;
     position: absolute;
@@ -89,7 +123,6 @@ img {vertical-align: middle;}
     user-select: none;
 }
 
-/* Position the "next button" to the right */
 .next {
     right: 10px;
     border-radius: 3px 0 0 3px;
@@ -97,8 +130,8 @@ img {vertical-align: middle;}
 #arraySlides{
     display: none;
 }
-/* On hover, add a grey background color */
+
 .prev:hover, .next:hover {
     background-color: rgba(255, 255, 255, 80%);
-    color: black;
+    color: var(--color_dark_violet);
 }
