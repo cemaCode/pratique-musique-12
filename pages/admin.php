@@ -69,7 +69,7 @@ if (!isset($_SESSION['login'])) {
 
         }
     </style>
-    <h2>Admin</h2>
+    <h2>Administrateur</h2>
     <section>
 
         <p>Bonjour, bienvenue sur la page d'accueil </p>
