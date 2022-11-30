@@ -22,13 +22,15 @@ if (isset($_GET['func'])) {
             }
             break;
         case 'add_offre':
-            $param = $_GET['s_idOffre'];
-            $ret = $db->deleteOffre($param);
-            if ($ret == true) {
-                echo "Offre #$param supprimée avec succès.";
-            } else {
-                echo "Impossible de supprimer l'offre #$param.";
-            }
+            $nom = $_GET["f_o_nom"];
+            $desc = $_GET["f_o_desc"];
+            $rubrique = $_GET["f_o_rubrique"];
+            $niveau = $_GET["f_o_niveau"];
+            $instru = $_GET["f_o_instru"];
+            $contact = $_GET["f_o_struct"];
+
+            $db->addOffre($nom, $desc, $rubrique, $niveau, $instru, $contact);
+            
             break;
         case 'add_instrument':
             $param = $_GET['f_i_instru'];
