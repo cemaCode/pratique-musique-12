@@ -43,25 +43,36 @@ function deleteOffre() {
 }
 
 
-/* function addOffre() {
+ function addOffre() {
 
     //TODO 
     var func = "add_offre";
-    var offre = document.getElementById("s_offre").value;
-    var idOffre = offre.split('#')[0]; 
-    var getRequest = "func=" + func + "&s_idOffre=" + idOffre;
-   
+    var nom = document.getElementById("f_o_nom").value;
+    var desc = document.getElementById("f_o_desc").value;
+    var rubrique = document.getElementById("f_o_rubrique").value;
+    var niveau = document.getElementById("f_o_niveau").value;
+    var instru = document.getElementById("f_o_instru").value;
+    var contact = document.getElementById("f_o_struct").value;
+    contact = contact.split('| ')[1];
+    var getRequest = "func=" + func + "&f_o_nom=" + nom+ "&f_o_rubrique=" + rubrique+ "&f_o_desc=" + desc+ "&f_o_niveau=" + niveau + "&f_o_instru=" + instru+ "&f_o_struct=" + contact;
+
+    if(nom != '' && desc != '' && rubrique != '' && contact != '' && niveau != ''  ){
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("result_f_suppr_offre").innerHTML = this.responseText;
+            document.getElementById("result_f_ajout_offre").innerHTML = this.responseText;
         }
     };
+    
 
     xmlhttp.open("GET", "adminModifs.php?" + getRequest, true);
-    xmlhttp.send();
+    xmlhttp.send();}
+    else {
+        alert("Veuillez renseigner tous les champs marquées par '*'");
+    }
 
-} */
+
+} 
 
 
 function addInstrument() {

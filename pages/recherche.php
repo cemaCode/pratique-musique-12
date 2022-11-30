@@ -8,8 +8,12 @@ include('head.php')
     ?>
 
     <h2>Recherche</h2>
+
+
+    
     <section>
-        <!-- Formulaire de recherche  -->
+    <a href="rechercheParCarte.php"><h2>Rechercher des offres via la carte </h2></a> <br>
+    <!-- Formulaire de recherche  -->
         <form id="f_recherche" role="search">
             <!-- Liste déroulante RUBRIQUES -->
             <label for="f_rubrique">Selectionner une rubrique:</label>
