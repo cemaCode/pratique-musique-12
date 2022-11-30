@@ -239,9 +239,9 @@ if (!isset($_SESSION['login'])) {
                     <label for="f_o_desc">Saisir la description de l'offre :</label><br>
                     <textarea rows="4" cols="30" type="tex" id="f_o_desc" name="f_o_desc"></textarea><br>
                     <label for="f_o_img">Choisir les 3 images pour l'offre  : </label><br>
-                    <input type="file" id="f_o_img_1" accept="image/png, image/jpeg"><br>
-                    <input type="file" id="f_o_img_2" accept="image/png, image/jpeg"><br>
-                    <input type="file" id="f_o_img_3" accept="image/png, image/jpeg"><br>
+                    <input type="file" id="f_o_img_1" accept="image/png, image/jpeg" disabled><br>
+                    <input type="file" id="f_o_img_2" accept="image/png, image/jpeg" disabled><br>
+                    <input type="file" id="f_o_img_3" accept="image/png, image/jpeg" disabled><br>
                     <label for="f_rubrique">Selectionner la rubrique de l'offre *:</label><br>
                     <select name="f_o_rubrique" id="f_o_rubrique">
                         <option value="Accompagnement">Accompagnement </option>
@@ -294,26 +294,6 @@ if (!isset($_SESSION['login'])) {
 
 
 
-            <div class="form" id="f_modifer_offre">
-                <h4>Modifier une offre :</h4>
-
-                <label for="f_m_offre">Chosir l'offre à modifier :</label><br>
-                <select name="f_m_offre" id="f_m_offre">
-                    <?php
-                    $offres = $db->getOffres();
-                    foreach ($offres as $offre) {
-                        echo "<option>";
-                        echo "#" . $offre['idOffre'] . " - " . $offre['nomOffre'];
-                        echo "</option>";
-                    }
-                    ?>
-
-                    <!-- TODO : a bunch of stuff -->
-
-                </select><br>
-                <input type="button" value="Modifier l'offre ">
-
-            </div>
 
 
             <div class="form" id="f_suppr_offre">
