@@ -228,6 +228,31 @@ class dbController
 		return $dump;
 	}
 
+	public function searchOffresByCommune($commune)
+	{
+		$GLOBALS['commune']  = $commune;
+		$commune = $this->cleanInput($commune);
+		$insee = $this->nomCommuneToInsee($commune);
+		$reqBase = "SELECT * FROM structures  WHERE codeInsee = '$insee' ";
+		$reqBase  = "SELECT * FROM offres AS O INNER JOIN structures AS S ON O.contact=S.contact  WHERE codeInsee = '$insee' ";
+		if ($result = $this->_mysqli->query($reqBase)) {
+			$dump = $result->fetch_all(MYSQLI_ASSOC);
+			$dump = array_unique($dump, SORT_REGULAR);
+			$result->free_result();
+		}
+		return $dump;
+	}
+
+
+	public function nomCommuneToInsee($commune){
+		$codeInsee = "99999";
+		$req = "SELECT codeInsee FROM communes WHERE  nomCommune='" . $commune . "';";
+		if ($result = $this->_mysqli->query($req)) {
+			$codeInsee = $result->fetch_row();
+			$result->free_result();
+		}
+		return $codeInsee[0];
+	}
 	public function communeToInsee($codePostal, $commune)
 	{
 		$codeInsee = "99999";
@@ -347,25 +372,36 @@ class dbController
 		}
 	}
 
-    private function createIdOffre()
-    {
-        $listeid = [];
-        $listeidPlus =[];
-        $newId = "";
-        $idTable = [];
-        $liste_offres = $this->getOffres();
-        foreach ($liste_offres as $offre) {
-            array_push($listeid,$offre['idOffre']);
-            array_push($listeidPlus,$offre['idOffre']+1);
-        }
-        $idTable = array_diff($listeidPlus, $listeid);
-        $newId=min($idTable);
-        return $newId;
-    }
-
-	public function addOffre()
+	private function createIdOffre()
 	{
-		// TODO 
+		$listeid = [];
+		$listeidPlus = [];
+		$newId = "";
+		$idTable = [];
+		$liste_offres = $this->getOffres();
+		foreach ($liste_offres as $offre) {
+			array_push($listeid, $offre['idOffre']);
+			array_push($listeidPlus, $offre['idOffre'] + 1);
+		}
+		$idTable = array_diff($listeidPlus, $listeid);
+		$newId = min($idTable);
+		return $newId;
+	}
+
+	public function addOffre($nom, $des, $rubrique, $niveau, $instru, $contact)
+	{
+		$offreId = $this->createIdOffre();
+
+
+		$req = "INSERT INTO `offres` (`idOffre`, `nomOffre`, `description`, `nomRubrique`, `niveau`, `contact`) ";
+		$req_values = " VALUES ('" . $offreId . "','" . $nom . "','" . $des . "','" . $rubrique . "','" . $niveau . "','" . $contact . "')";
+		$req = $req . $req_values;
+		if ($result = $this->_mysqli->query($req)) {
+			echo "Offre: " . $nom . " ajouté avc succès.";
+		} else {
+			echo "Error: impossible d'ajotuer l'offre";
+		}
+
 	}
 
 	public function modifyOffre()

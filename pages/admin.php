@@ -69,7 +69,7 @@ if (!isset($_SESSION['login'])) {
 
         }
     </style>
-    <h2>Admin</h2>
+    <h2>Administrateur</h2>
     <section>
 
         <p>Bonjour, bienvenue sur la page d'accueil </p>
@@ -236,13 +236,15 @@ if (!isset($_SESSION['login'])) {
                     <h4>Ajouter une offre : </h4>
                     <label for="f_o_nom">Saisir nom de l'offre* :</label><br>
                     <input type="text" name="f_o_nom" id="f_o_nom"><br>
-                    <label for="f_mdp">Saisir la description de l'offre :</label><br>
+                    <label for="f_o_desc">Saisir la description de l'offre :</label><br>
                     <textarea rows="4" cols="30" type="tex" id="f_o_desc" name="f_o_desc"></textarea><br>
-                    <label for="f_o_img">Choisir les 3 images pour l'offre * : </label><br>
-                    <input type="file" id="f_o_img_1" accept="image/png, image/jpeg"><br>
-                    <input type="file" id="f_o_img_2" accept="image/png, image/jpeg"><br>
-                    <input type="file" id="f_o_img_3" accept="image/png, image/jpeg"><br>
-                    <label for="f_rubrique">Selectionner la rubrique de l'offre :</label><br>
+
+                    <label for="f_o_img">Choisir les 3 images pour l'offre  : </label><br>
+                    <input type="file" id="f_o_img_1" accept="image/png, image/jpeg" disabled><br>
+                    <input type="file" id="f_o_img_2" accept="image/png, image/jpeg" disabled><br>
+                    <input type="file" id="f_o_img_3" accept="image/png, image/jpeg" disabled><br>
+                    <label for="f_rubrique">Selectionner la rubrique de l'offre *:</label><br>
+
                     <select name="f_o_rubrique" id="f_o_rubrique">
                         <option value="Accompagnement">Accompagnement </option>
                         <option value="Diffusion">Diffusion</option>
@@ -251,7 +253,7 @@ if (!isset($_SESSION['login'])) {
                         <option value="Pratique d'ensemble">Pratique d'ensemble</option>
                     </select><br>
                     <!-- Liste déroulante NIVEAUX -->
-                    <label for="f_o_niveau">Selectionner le niveau de l'offre :</label><br>
+                    <label for="f_o_niveau">Selectionner le niveau de l'offre *:</label><br>
                     <select name="f_o_niveau" id="f_o_niveau">
                         <option value="Tous">Tous</option>
                         <option value="Débutant">Débutant</option>
@@ -262,12 +264,26 @@ if (!isset($_SESSION['login'])) {
                     </select><br>
                     <label for="f_o_instru">Selectionner un instrument :</label><br>
                     <select name="f_o_instru" id="f_o_instru">
+                        <option></option>
                         <?php
                         $instruments = $db->getInstruments();
 
                         foreach ($instruments as $instrument) {
                             echo "<option>";
                             echo $instrument['nomInstrument'];
+                            echo "</option>";
+                        }
+                        ?>
+                    </select><br>
+
+                    <label for="f_o_struct">Lier à une Structure *:</label><br>
+                    <select name="f_o_struct" id="f_o_struct">
+                    <?php
+                        $structures = $db->getStructures();
+
+                        foreach ($structures as $structure) {
+                            echo "<option >";
+                            echo $structure['nomStructure'] . " | " . $structure['contact'];
                             echo "</option>";
                         }
                         ?>
@@ -281,26 +297,6 @@ if (!isset($_SESSION['login'])) {
 
 
 
-            <div class="form" id="f_modifer_offre">
-                <h4>Modifier une offre :</h4>
-
-                <label for="f_m_offre">Chosir l'offre à modifier :</label><br>
-                <select name="f_m_offre" id="f_m_offre">
-                    <?php
-                    $offres = $db->getOffres();
-                    foreach ($offres as $offre) {
-                        echo "<option>";
-                        echo "#" . $offre['idOffre'] . " - " . $offre['nomOffre'];
-                        echo "</option>";
-                    }
-                    ?>
-
-                    <!-- TODO : a bunch of stuff -->
-
-                </select><br>
-                <input type="button" value="Modifier l'offre ">
-
-            </div>
 
 
             <div class="form" id="f_suppr_offre">
