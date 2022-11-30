@@ -1,3 +1,4 @@
+
 function afficherResultats() {
     var rubrique = document.getElementById("rubrique_offre");
     var niveau = document.getElementById("niveau_offre");

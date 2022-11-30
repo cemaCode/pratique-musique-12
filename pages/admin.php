@@ -238,11 +238,13 @@ if (!isset($_SESSION['login'])) {
                     <input type="text" name="f_o_nom" id="f_o_nom"><br>
                     <label for="f_o_desc">Saisir la description de l'offre :</label><br>
                     <textarea rows="4" cols="30" type="tex" id="f_o_desc" name="f_o_desc"></textarea><br>
+
                     <label for="f_o_img">Choisir les 3 images pour l'offre  : </label><br>
                     <input type="file" id="f_o_img_1" accept="image/png, image/jpeg" disabled><br>
                     <input type="file" id="f_o_img_2" accept="image/png, image/jpeg" disabled><br>
                     <input type="file" id="f_o_img_3" accept="image/png, image/jpeg" disabled><br>
                     <label for="f_rubrique">Selectionner la rubrique de l'offre *:</label><br>
+
                     <select name="f_o_rubrique" id="f_o_rubrique">
                         <option value="Accompagnement">Accompagnement </option>
                         <option value="Diffusion">Diffusion</option>
@@ -273,6 +275,7 @@ if (!isset($_SESSION['login'])) {
                         }
                         ?>
                     </select><br>
+
                     <label for="f_o_struct">Lier à une Structure *:</label><br>
                     <select name="f_o_struct" id="f_o_struct">
                     <?php

@@ -22,6 +22,7 @@ if (isset($_GET['func'])) {
             }
             break;
         case 'add_offre':
+
             $nom = $_GET["f_o_nom"];
             $desc = $_GET["f_o_desc"];
             $rubrique = $_GET["f_o_rubrique"];
@@ -31,6 +32,7 @@ if (isset($_GET['func'])) {
 
             $db->addOffre($nom, $desc, $rubrique, $niveau, $instru, $contact);
             
+
             break;
         case 'add_instrument':
             $param = $_GET['f_i_instru'];

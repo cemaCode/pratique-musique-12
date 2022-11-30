@@ -1,4 +1,5 @@
 
+
 function modifyText() {
 
     var func = "modify_text";
@@ -223,3 +224,4 @@ function deleteStructure() {
     }
 
 }
+
