@@ -11,7 +11,7 @@
 </head>
 
 <header>
-    <h1><a href="/pratique-musique-12/index.php">pratique-musique-12</a></h1>
+    <div class="homeLink"><a href="/pratique-musique-12/index.php"><img src="/pratique-musique-12/images/logo.png" ></a></div>
 </header>
 
 <?php

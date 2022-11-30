@@ -11,34 +11,40 @@ section {
 }
 
 figure {
-    position:relative;
-    height:300px;
-    overflow:hidden;
+    position: relative;
+    height: 300px;
+    overflow: hidden;
 }
-.fig_description #description {
-    position:absolute;
-    bottom:-60px;
-    left:0px;
-    height:50px;
+
+.fig_description .description {
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    height: 50px;
     width: 100%;
-    z-index:1;
-    transition: all 0.08s ease-in-out;
-    background: rgba(0,0,0,1);
+    z-index: 1;
+    transition: all .08s ease-in-out;
+    background: #000;
     padding-top: 10px;
     padding-left: 10px;
 }
 
-#titre_img {
+figcaption {
+    text-shadow: 0 0 4px rgba(0,0,0,.8);
+    color: var(--color_dark_violet);
+}
+
+.titre_img {
     position: absolute;
     bottom: 50px;
     padding-left: 10px;
     font-family: "Trebuchet MS";
     font-size: 2em;
-    color: rgb(255,    238,    228);
+    color: #ffeee4;
 }
-.fig_description:hover #description {
-    bottom:0px;
-    color: white;
-    background: rgba(0,0,0,0.4);
 
+.fig_description:hover .description {
+    bottom: 0;
+    color: #fff;
+    background: rgba(0,0,0,.4);
 }

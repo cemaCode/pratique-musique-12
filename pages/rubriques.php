@@ -9,7 +9,7 @@
     <meta name="viewport" content="height=device-height, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/pratique-musique-12/stylesheet/header.css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="/pratique-musique-12/stylesheet/rubriques.css" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="/pratique-musique-12/stylesheet/print.css" media="print" />
+    <link rel="stylesheet" type="text/css" href="/pratique-musique-12/stylesheet/print.css" media="print"/>
 </head>
 
 <body>
@@ -20,42 +20,49 @@ require_once('header.php');
 <h2>Rubriques</h2>
 <section>
     <div class="fig_container">
-    <figure class="fig_description">
-        <a href="/pratique-musique-12/pages/rubriques/eveil_musical.php"><img src="/pratique-musique-12/images/eveil_musical.jpg" /></a>
-        <figcaption id="titre_img">Éveil musical</figcaption>
-        <figcaption id="description">This is caption for class one</figcaption>
-    </figure>
-    </div>
-
-    <div class="fig_container">
         <figure class="fig_description">
-            <a href="/pratique-musique-12/pages/rubriques/enseignements.php"><img src="/pratique-musique-12/images/enseignements.jpg" /></a>
-            <figcaption id="titre_img">Enseignements</figcaption>
-            <figcaption id="description">This is caption for class one</figcaption>
+            <a href="/pratique-musique-12/pages/rubriques/eveil_musical.php"><img
+                        src="/pratique-musique-12/images/eveil_musical.jpg"/>
+                <figcaption class="titre_img">Éveil musical</figcaption>
+            </a>
+
+            <figcaption class="description">Structures proposant de l'éveil musical</figcaption>
         </figure>
     </div>
 
     <div class="fig_container">
         <figure class="fig_description">
-            <a href="/pratique-musique-12/pages/rubriques/pratique_ensemble.php"><img src="/pratique-musique-12/images/pratique_ensemble.jpg" /></a>
-            <figcaption id="titre_img">Pratiques d'ensemble</figcaption>
-            <figcaption id="description">This is caption for class one</figcaption>
+            <a href="/pratique-musique-12/pages/rubriques/enseignements.php"><img
+                        src="/pratique-musique-12/images/enseignements.jpg"/>
+            <figcaption class="titre_img">Enseignements</figcaption></a>
+            <figcaption class="description">Structures proposant les enseignements classés par instruments</figcaption>
         </figure>
     </div>
 
     <div class="fig_container">
         <figure class="fig_description">
-            <a href="/pratique-musique-12/pages/rubriques/accompagnement.php"><img src="/pratique-musique-12/images/accompagnement.jpg" /></a>
-            <figcaption id="titre_img">Accompagnement</figcaption>
-            <figcaption id="description">This is caption for class one</figcaption>
+            <a href="/pratique-musique-12/pages/rubriques/pratique_ensemble.php"><img
+                        src="/pratique-musique-12/images/pratique_ensemble.jpg"/>
+            <figcaption class="titre_img">Pratiques d'ensemble</figcaption></a>
+            <figcaption class="description">Structures proposant de la pratique d'ensemble</figcaption>
         </figure>
     </div>
 
     <div class="fig_container">
         <figure class="fig_description">
-            <a href="/pratique-musique-12/pages/rubriques/diffusion.php"><img src="/pratique-musique-12/images/diffusion.jpg" /></a>
-            <figcaption id="titre_img">Diffusion</figcaption>
-            <figcaption id="description">This is caption for class one</figcaption>
+            <a href="/pratique-musique-12/pages/rubriques/accompagnement.php"><img
+                        src="/pratique-musique-12/images/accompagnement.jpg"/>
+            <figcaption class="titre_img">Accompagnement</figcaption></a>
+            <figcaption class="description">Structures proposant de l'accompagnement</figcaption>
+        </figure>
+    </div>
+
+    <div class="fig_container">
+        <figure class="fig_description">
+            <a href="/pratique-musique-12/pages/rubriques/diffusion.php"><img
+                        src="/pratique-musique-12/images/diffusion.jpg"/>
+            <figcaption class="titre_img">Diffusion</figcaption></a>
+            <figcaption class="description">Liste des structures proposant de la diffusion</figcaption>
         </figure>
     </div>
 

@@ -119,7 +119,7 @@ CREATE TABLE `INSTRUMENTS` (
 CREATE TABLE `OFFRES` (
   `idOffre` varchar(50) NOT NULL,
   `nomOffre` varchar(50) NOT NULL,
-  `description` varchar(200) DEFAULT NULL,
+  `description` varchar(500) DEFAULT NULL,
   `photo1` varchar(50) DEFAULT NULL,
   `photo2` varchar(50) DEFAULT NULL,
   `photo3` varchar(50) DEFAULT NULL,

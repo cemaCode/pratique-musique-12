@@ -1,23 +1,27 @@
 * {
-    color: black;
-    margin: 0px;
-    padding: 0px;
+    color: #000;
+    margin: 0;
+    padding: 0;
 }
 
-#navbar, button, input, .notesQuiBougent, .prev, .next, #arraySlides {
-    display: none;
-}
-
-.slideshow-container, img {
+#arraySlides,
+#navbar,
+.next,
+.notesQuiBougent,
+.prev,
+.slideshow-container,
+button,
+img,
+input {
     display: none;
 }
 
 h2 {
-    border: solid 2px black;
+    border: solid 2px #000;
 }
 
 .structure::before {
-    content: string(Structure );
+    content: string(Structure);
 }
 
 .offre {
@@ -28,6 +32,6 @@ footer {
     margin-top: 40px;
 }
 
-p{
+p {
     text-align: justify;
 }

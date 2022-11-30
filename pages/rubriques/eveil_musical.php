@@ -7,8 +7,9 @@ require_once('../head.php')
 require_once('../header.php');
 ?>
 
-<h2>Éveil musical</h2>
-<section>
+
+<fieldset>
+    <legend>Éveil musical</legend>
     <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . "/pratique-musique-12/testing/dbController.php");
 
@@ -21,7 +22,7 @@ require_once('../header.php');
 
     ?>
 
-</section>
+</fieldset>
 
 <?php
 require_once('../footer.php');
